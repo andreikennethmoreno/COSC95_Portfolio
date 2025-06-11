@@ -244,7 +244,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
                 isDarkMode ? "text-zinc-400" : "text-zinc-800"
               }`}
             >
-              Hi, I'm Dreiken Moreno. A creative Full-Stack Node.js Developer
+              Hi, I'm Kenneth Moreno. A creative Full-Stack Node.js Developer
               based in Cavite, Philippines. 📍
             </p>
 
