@@ -260,7 +260,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
 
       {/* <ScrollDownIcon isDarkMode={isDarkMode} scrollToAbout={scrollToAbout} /> */}
 
-      <div className="absolute bottom-1 lg:bottom-28 left-0 w-full px-6 sm:px-12">
+      <div className="absolute bottom-2 sm:bottom-20 lg:bottom-28 left-0 w-full px-6 sm:px-12">
         <div className="grid grid-cols-full sm:grid-cols-[1fr_2fr] gap-6 items-start text-center sm:text-left">
           <p
             className={`text-base sm:text-lg font-semibold ${
