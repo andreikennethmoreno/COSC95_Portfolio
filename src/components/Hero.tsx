@@ -34,9 +34,9 @@ const ProfileImage = ({ isDarkMode }: { isDarkMode: boolean }) => (
       `}
     >
       <img
-        src="/profile.jpg"
+        src="/image/moreno_profile.png"
         alt="Profile"
-        className="w-full h-full object-cover rounded-full"
+        className="w-full h-full object-cover "
       />
     </div>
   </div>
@@ -51,7 +51,7 @@ const SocialLinks = ({ isDarkMode }: { isDarkMode: boolean }) => {
   return (
     <div className="flex space-x-4">
       <a
-        href="https://github.com"
+        href="https://github.com/andreikennethmoreno"
         target="_blank"
         rel="noopener noreferrer"
         className={`p-3 rounded-lg transition-all duration-200 hover:scale-150 ${iconStyle}`}
@@ -59,7 +59,7 @@ const SocialLinks = ({ isDarkMode }: { isDarkMode: boolean }) => {
         <Github size={24} />
       </a>
       <a
-        href="https://linkedin.com"
+        href="https://www.linkedin.com/in/kenn-onirom-350a72300/"
         target="_blank"
         rel="noopener noreferrer"
         className={`p-3 rounded-lg transition-all duration-200 hover:scale-150 ${iconStyle}`}
@@ -67,7 +67,7 @@ const SocialLinks = ({ isDarkMode }: { isDarkMode: boolean }) => {
         <Linkedin size={24} />
       </a>
       <a
-        href="#your-section-id"
+        href="#projects"
         className={`p-3 font-bold rounded-lg transition-all duration-200 hover:scale-110 text-white ${
           isDarkMode ? "hover:text-white" : "hover:text-white"
         } bg-[#2BA6FF]`}
@@ -207,15 +207,7 @@ const techStack = [
     }, 
     title: "Tailwind CSS" 
   },
-  { 
-    Icon: { 
-      component: SiPostgresql, 
-      darkColor: "text-[#4285F4]", 
-      lightColor: "text-[#1565C0]" 
-    }, 
-    title: "PostgreSQL",
-    isLarge: true 
-  }
+
 ];
 
 // 👇 Main Component: Hero
@@ -252,7 +244,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
                 isDarkMode ? "text-zinc-400" : "text-zinc-800"
               }`}
             >
-              Hi, I'm Dreiken Moreno. A passionate Full-Stack Node.js Developer
+              Hi, I'm Dreiken Moreno. A creative Full-Stack Node.js Developer
               based in Cavite, Philippines. 📍
             </p>
 
@@ -268,7 +260,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
 
       {/* <ScrollDownIcon isDarkMode={isDarkMode} scrollToAbout={scrollToAbout} /> */}
 
-      <div className="absolute bottom-28 left-0 w-full px-6 sm:px-12">
+      <div className="absolute bottom-1 lg:bottom-28 left-0 w-full px-6 sm:px-12">
         <div className="grid grid-cols-full sm:grid-cols-[1fr_2fr] gap-6 items-start text-center sm:text-left">
           <p
             className={`text-base sm:text-lg font-semibold ${
@@ -278,13 +270,12 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
             Tech Stack
           </p>
           <div className="flex flex-wrap justify-center gap-10 text-4xl">
-            {techStack.map(({ Icon, title, isLarge }) => (
+            {techStack.map(({ Icon, title }) => (
               <TechIcon
                 key={title}
                 Icon={Icon}
                 title={title}
                 isDarkMode={isDarkMode}
-                isLarge={isLarge}
               />
             ))}
           </div>

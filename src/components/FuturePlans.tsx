@@ -1,5 +1,5 @@
 import React from "react";
-import { Rocket, BookOpen, Users, Globe, Brain, Heart } from "lucide-react";
+import { Rocket, BookOpen, Users, Globe, Brain, Heart, Cpu, GraduationCap, Code2, Youtube, Plane, Briefcase } from "lucide-react";
 
 interface FuturePlansProps {
   isDarkMode: boolean;
@@ -8,55 +8,55 @@ interface FuturePlansProps {
 const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
   const shortTermGoals = [
     {
-      title: "Master AI-Powered Design",
+      title: "Build AI-Powered Web Projects",
       description:
-        "Explore and integrate AI tools into my design workflow to enhance creativity and efficiency.",
-      timeline: "6 months",
-      icon: Brain,
+        "Create full-stack applications that integrate AI features (e.g., recommendations, chatbots, generation) to deepen practical AI experience.",
+      timeline: "3–6 months",
+      icon: Cpu,
     },
     {
-      title: "Launch Design Course",
+      title: "Develop AI Thesis Project",
       description:
-        "Create and launch an online course teaching practical UX design skills to aspiring designers.",
-      timeline: "8 months",
-      icon: BookOpen,
+        "Design and implement an AI-driven website for my 4th year thesis, showcasing both technical and creative application of machine learning.",
+      timeline: "6–9 months",
+      icon: GraduationCap,
     },
     {
-      title: "Speaking Engagements",
+      title: "Level Up Coding Fluency",
       description:
-        "Present at major design conferences and share insights on modern design systems.",
-      timeline: "12 months",
-      icon: Users,
+        "Deepen mastery in React, Next.js, Prisma, and full-stack dev practices while exploring new tools like LangChain and AI SDKs.",
+      timeline: "Ongoing over 12 months",
+      icon: Code2,
     },
   ];
 
   const longTermVision = [
     {
-      title: "Global Design Consultancy",
+      title: "100K+ YouTube Subscribers",
       description:
-        "Build a consultancy that helps companies create more inclusive and accessible digital products worldwide.",
-      icon: Globe,
-      impact: "Reaching 100+ companies globally",
-      category: "Business",
+        "Grow a tech-focused channel that shares real dev journeys, AI experiments, and startup building in public—uploading weekly to inspire and teach.",
+      icon: Youtube,
+      impact: "Empowering 100k+ aspiring devs worldwide",
+      category: "Content Creation",
       date: "Q4 2026",
     },
     {
-      title: "Design Education Platform",
+      title: "Japan Dev + Content Trip",
       description:
-        "Develop a comprehensive platform that makes high-quality design education accessible to everyone.",
-      icon: Rocket,
-      impact: "Training 10,000+ designers",
-      category: "Education",
-      date: "Q2 2027",
+        "Visit Japan to film immersive dev vlogs, interview local creatives, and build a mini web series blending tech, culture, and storytelling.",
+      icon: Plane,
+      impact: "Connecting global dev culture through storytelling",
+      category: "Cultural + Content",
+      date: "Q2 2026",
     },
     {
-      title: "Social Impact Projects",
+      title: "Launch Profitable AI Startups",
       description:
-        "Use design skills to solve social problems and contribute to meaningful causes in underserved communities.",
-      icon: Heart,
-      impact: "Creating positive social change",
-      category: "Community",
-      date: "Ongoing",
+        "Build and ship AI-powered SaaS tools and creative utilities with monetization in mind—solving real problems with tech and design.",
+      icon: Briefcase,
+      impact: "Achieve sustainable income through tech entrepreneurship",
+      category: "Startup",
+      date: "Q1 2027",
     },
   ];
 
@@ -104,12 +104,12 @@ const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
                   className={`rounded-3xl p-8 transition-all duration-500 transform hover:scale-105 group ${
                     isDarkMode
                       ? "bg-zinc-900 hover:bg-zinc-800"
-                      : "bg-zinc-100 hover:bg-zinc-200"
+                      : "bg-zinc-100 ,hover:bg-zinc-100"
                   }`}
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
-                  <div className="p-4 bg-[#2BA6FF] rounded-2xl w-fit mb-6">
-                    <Icon size={32} className="text-white" />
+                  <div className="p-4 rounded-2xl w-fit mb-6">
+                    <Icon size={32} className="text-[#2BA6FF]" />
                   </div>
 
                   <h4
@@ -154,6 +154,9 @@ const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
           >
             {longTermVision.map((vision) => {
               const Icon = vision.icon;
+              const iconStyle = isDarkMode
+                ? "bg-zinc-800 text-zinc-300 hover:text-white"
+                : "bg-zinc-200 text-zinc-800 hover:text-black";
               return (
                 <div
                   key={vision.title}
@@ -184,8 +187,10 @@ const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
                         isDarkMode ? "text-white" : "text-zinc-900"
                       } flex items-center gap-3`}
                     >
-                      <div className="p-2 bg-[#2BA6FF] rounded-lg inline-flex">
-                        <Icon size={24} className="text-white" />
+                      <div
+                        className={`p-2 rounded-lg inline-flex ${iconStyle}`}
+                      >
+                        <Icon size={24} />
                       </div>
                       {vision.title}
                     </h4>
@@ -206,39 +211,6 @@ const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
               );
             })}
           </div>
-        </div>
-
-        {/* Call to Action */}
-        <div
-          className={`text-center rounded-3xl p-12 ${
-            isDarkMode ? "bg-zinc-900" : "bg-zinc-100"
-          }`}
-        >
-          <h3
-            className={`text-2xl font-bold mb-4 ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
-          >
-            Want to Be Part of the Journey?
-          </h3>
-          <p
-            className={`mb-8 max-w-2xl mx-auto ${
-              isDarkMode ? "text-zinc-300" : "text-zinc-800"
-            }`}
-          >
-            I believe the best work happens through collaboration. If any of
-            these goals resonate with you, or if you have ideas for meaningful
-            projects, I'd love to connect and explore possibilities together.
-          </p>
-          <button
-            onClick={() => {
-              const element = document.getElementById("contact");
-              if (element) element.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="px-8 py-4 bg-[#2BA6FF] text-white rounded-lg font-medium hover:bg-[#2BA6FF]/90 transform hover:scale-105 transition-all duration-200"
-          >
-            Let's Connect
-          </button>
         </div>
       </div>
     </section>

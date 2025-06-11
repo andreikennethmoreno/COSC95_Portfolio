@@ -15,7 +15,7 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   const [activeSection, setActiveSection] = useState("hero");
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -81,7 +81,9 @@ function App() {
         <Hero isDarkMode={isDarkMode} />
         <About isDarkMode={isDarkMode} />
         <Skills isDarkMode={isDarkMode} />
-        <Projects isDarkMode={isDarkMode} />
+        <div id="your-section-id">
+          <Projects isDarkMode={isDarkMode} />
+        </div>
         <Challenges isDarkMode={isDarkMode} />
         <FuturePlans isDarkMode={isDarkMode} />
         <Resume isDarkMode={isDarkMode} />

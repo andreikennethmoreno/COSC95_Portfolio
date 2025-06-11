@@ -9,6 +9,8 @@ import {
   Twitter,
   MessageSquare,
   CheckCircle,
+  Loader2,
+  Youtube,
 } from "lucide-react";
 
 interface ContactProps {
@@ -25,6 +27,7 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -55,6 +58,7 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError("");
 
     if (!validateForm()) {
       return;
@@ -63,33 +67,36 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call to send email
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         setIsSubmitted(true);
-        // Reset form after successful submission
         setTimeout(() => {
           setFormData({ name: "", email: "", subject: "", message: "" });
           setIsSubmitted(false);
-        }, 3000);
+        }, 5000);
       } else {
-        throw new Error("Failed to send message");
+        setSubmitError("Failed to send message. Please try again.");
       }
     } catch (error) {
-      console.error("Error sending message:", error);
-      // For demo purposes, we'll still show success
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setIsSubmitted(false);
-      }, 3000);
+      setSubmitError(
+        "Network error. Please check your connection and try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -105,26 +112,31 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
+
+    // Clear submit error when user makes changes
+    if (submitError) {
+      setSubmitError("");
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "alex.johnson@email.com",
-      href: "mailto:alex.johnson@email.com",
+      value: "kennonirom@gmail.com",
+      href: "mailto:kennonirom@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: "+63 915 4564 720", // Replace with your actual number
+      href: "tel:+63915 4564 720",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
-      href: "#",
+      value: "Cavite, Philippines",
+      href: "https://www.google.com/maps/place/Cavite/@13.865414,120.4799785,8z/data=!4m6!3m5!1s0x3397d4eae8163c71:0xf0c4d0843bdde727!8m2!3d14.2456329!4d120.8785658!16zL20vMDFmNnF3?entry=ttu&g_ep=EgoyMDI1MDYwOC4wIKXMDSoASAFQAw%3D%3D",
     },
   ];
 
@@ -132,17 +144,17 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com/alexjohnson",
+      href: "https://github.com/andreikennethmoreno/", // Replace with your GitHub
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com/in/alexjohnson",
+      href: "https://www.linkedin.com/in/kenn-onirom-350a72300/", // Replace with your LinkedIn
     },
     {
-      icon: Twitter,
-      label: "Twitter",
-      href: "https://twitter.com/alexjohnson",
+      icon: Youtube,
+      label: "Youtube",
+      href: "https://www.youtube.com/@KennOnirom", // Replace with your Twitter
     },
   ];
 
@@ -168,21 +180,25 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                 isDarkMode ? "text-white" : "text-black"
               }`}
             >
-              Thank You!
+              Message Sent Successfully!
             </h2>
             <p
               className={`text-lg ${
                 isDarkMode ? "text-zinc-300" : "text-zinc-800"
               }`}
             >
-              Your message has been sent successfully. I'll get back to you
-              within 24 hours.
+              Thank you for reaching out! I'll get back to you as soon as
+              possible.
             </p>
           </div>
         </div>
       </section>
     );
   }
+
+  const iconStyle = isDarkMode
+    ? "bg-zinc-800 text-zinc-300 hover:text-white"
+    : "bg-zinc-200 text-zinc-800 hover:text-black";
 
   return (
     <section
@@ -198,15 +214,15 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
               isDarkMode ? "text-white" : "text-black"
             }`}
           >
-            Let's Connect
+            Let's Connect 👇
           </h2>
           <p
             className={`mt-6 max-w-2xl mx-auto ${
               isDarkMode ? "text-zinc-400" : "text-zinc-800"
             }`}
           >
-            Have a project in mind or just want to chat about design? I'd love
-            to hear from you. Let's create something amazing together.
+            Have a project in mind or just want to chat about development? I'd
+            love to hear from you. Let's create something amazing together.
           </p>
         </div>
 
@@ -231,11 +247,11 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                       className={`flex items-center p-4 rounded-2xl transition-all duration-300 transform hover:scale-105 group ${
                         isDarkMode
                           ? "bg-zinc-800 hover:bg-zinc-700"
-                          : "bg-white hover:bg-zinc-200"
+                          : "bg-zinc-100 ,hover:bg-zinc-100"
                       }`}
                     >
-                      <div className="p-3 bg-[#2BA6FF] rounded-xl mr-4">
-                        <Icon size={24} className="text-white" />
+                      <div className="p-3 rounded-xl mr-4">
+                        <Icon size={24} className="text-[#2BA6FF]" />
                       </div>
                       <div>
                         <p
@@ -276,7 +292,7 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-4 bg-[#2BA6FF] rounded-2xl text-white hover:bg-[#2BA6FF]/90 transition-all duration-300 transform hover:scale-110"
+                      className={`p-4 ${iconStyle} rounded-2xl transition-all duration-300 transform hover:scale-110`}
                       title={social.label}
                     >
                       <Icon size={24} />
@@ -300,6 +316,13 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
             >
               Send a Message
             </h3>
+
+            {submitError && (
+              <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-xl">
+                {submitError}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -317,7 +340,8 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] ${
+                    disabled={isSubmitting}
+                    className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] disabled:opacity-50 disabled:cursor-not-allowed ${
                       errors.name
                         ? "border-red-500"
                         : isDarkMode
@@ -346,7 +370,8 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] ${
+                    disabled={isSubmitting}
+                    className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] disabled:opacity-50 disabled:cursor-not-allowed ${
                       errors.email
                         ? "border-red-500"
                         : isDarkMode
@@ -376,7 +401,8 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] ${
+                  disabled={isSubmitting}
+                  className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] disabled:opacity-50 disabled:cursor-not-allowed ${
                     errors.subject
                       ? "border-red-500"
                       : isDarkMode
@@ -405,7 +431,8 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                   rows={6}
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] resize-none ${
+                  disabled={isSubmitting}
+                  className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] resize-none disabled:opacity-50 disabled:cursor-not-allowed ${
                     errors.message
                       ? "border-red-500"
                       : isDarkMode
@@ -422,15 +449,11 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full py-4 px-6 bg-[#2BA6FF] text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center ${
-                  isSubmitting
-                    ? "opacity-70 cursor-not-allowed"
-                    : "hover:bg-[#2BA6FF]/90"
-                }`}
+                className="w-full py-4 px-6 bg-[#2BA6FF] text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center hover:bg-[#2BA6FF]/90 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    <Loader2 size={20} className="mr-2 animate-spin" />
                     Sending...
                   </>
                 ) : (

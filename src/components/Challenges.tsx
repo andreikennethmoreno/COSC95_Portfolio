@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mountain, Lightbulb, Target, TrendingUp } from "lucide-react";
+import { Mountain, Lightbulb, Target, TrendingUp, Video, FlaskConical, LayoutDashboard } from "lucide-react";
 
 interface ChallengesProps {
   isDarkMode: boolean;
@@ -8,35 +8,36 @@ interface ChallengesProps {
 const Challenges: React.FC<ChallengesProps> = ({ isDarkMode }) => {
   const challenges = [
     {
-      title: "Scaling Design Systems",
+      title: "Technical Content Creation",
       description:
-        "Leading the design system adoption across 15+ teams with different workflows and requirements.",
+        "Simplifying complex full-stack concepts and frameworks for thousands of developers on YouTube.",
       solution:
-        "Created comprehensive documentation, conducted workshops, and established a design council for governance.",
+        "Scripted, recorded, and edited engaging tutorials on Next.js, Prisma, PostgreSQL, and API integrations with real-world examples.",
       learning:
-        "The importance of change management and clear communication in technical transitions.",
-      icon: Target,
+        "Clarity and structure are key when teaching; hands-on examples resonate most with developers at all levels.",
+      icon: Video, // or use a relevant icon like `MonitorPlay` from lucide-react
     },
     {
-      title: "Performance Optimization",
+      title: "Contributing to Beta Developer Tools",
       description:
-        "Inherited a React application with poor performance, loading times exceeding 8 seconds.",
+        "Collaborated with Neon to test and improve their authentication system before public launch.",
       solution:
-        "Implemented code splitting, lazy loading, optimized bundle sizes, and introduced performance monitoring.",
+        "Implemented Neon Auth in a full-stack project, documented the integration, and provided UX feedback to the product team.",
       learning:
-        "How small optimizations compound to create significant user experience improvements.",
-      icon: TrendingUp,
+        "Beta testing is a two-way street—valuable feedback requires empathy, clear communication, and real-world testing.",
+      icon: FlaskConical, // or a lab flask icon
     },
     {
-      title: "Cross-Cultural Design",
+      title: "UI/UX for Student Projects",
       description:
-        "Designing products for global markets with diverse cultural preferences and accessibility needs.",
+        "Created visually intuitive interfaces for academic tools used by students with limited tech background.",
       solution:
-        "Conducted extensive user research, created localized design patterns, and implemented inclusive design principles.",
+        "Used Tailwind CSS and DaisyUI to rapidly prototype clean, accessible UIs that enhanced usability and reduced user friction.",
       learning:
-        "The power of empathy and user research in creating truly inclusive digital experiences.",
-      icon: Mountain,
+        "Design isn’t just aesthetics—it’s about how easily someone can navigate and understand your product.",
+      icon: LayoutDashboard,
     },
+    
   ];
 
   const [openIndex, setOpenIndex] = useState(0); // first one open by default

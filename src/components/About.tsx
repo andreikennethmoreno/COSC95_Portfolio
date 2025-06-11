@@ -23,7 +23,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
       className={`rounded-2xl p-6 sm:p-8 transition-transform duration-300 hover:scale-105 ${
         isDarkMode
           ? "bg-zinc-900 hover:bg-zinc-800"
-          : "bg-zinc-100 hover:bg-zinc-200"
+          : "bg-zinc-100 hover:bg-zinc-100"
       }`}
     >
       <h3
@@ -63,7 +63,7 @@ const SpinningImage: React.FC<SpinningImageProps> = ({
   return (
     <div
       className="relative mt-12 mx-auto w-full max-w-xl sm:max-w-2xl"
-      style={{ aspectRatio: "16 / 10" }}
+      style={{ aspectRatio: "20/9" }}
     >
       <img
         src={imageSrc}
@@ -80,11 +80,16 @@ const SpinningImage: React.FC<SpinningImageProps> = ({
           <defs>
             <path
               id="circlePath"
-              d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0"
+              d="M 100, 100 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"
               fill="none"
             />
           </defs>
-          <text fill="#2BA6FF" fontSize="16" fontWeight="bold" fontFamily="monospace" >
+          <text
+            fill={"#000000"}
+            fontSize="16"
+            fontWeight="bold"
+            fontFamily="monospace"
+          >
             <textPath href="#circlePath" startOffset="0%">
               {text}
             </textPath>
@@ -100,7 +105,7 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
     <section
       id="about"
       className={`py-16 px-4 sm:px-6 lg:px-8 border-t ${
-        isDarkMode ? "border-zinc-800" : "border-zinc-200"
+        isDarkMode ? "border-zinc-800" : "border-zinc-100"
       }`}
     >
       <div className="max-w-6xl mx-auto">
@@ -121,31 +126,34 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
               title="The Real Me"
               icon={<Heart className="text-[#2BA6FF]" size={24} />}
             >
-              I'm a passionate designer and developer with 5+ years of
-              experience creating digital experiences that users love. I believe
-              in the power of good design to solve real problems and make
-              technology more human-centered.
+              I'm a web developer with 3 years of experience building full-stack
+              apps and tutorials that I love to share on my YouTube channel. I
+              believe that serving people is the path to a fulfilling life, and
+              I strive to reflect that in the work I do and the content I
+              create.
             </InfoCard>
 
-            <InfoCard
+            {/* <InfoCard
               isDarkMode={isDarkMode}
               title="Background"
               icon={<MapPin className="text-[#2BA6FF]" size={24} />}
             >
-              Born and raised in San Francisco, I grew up in a tech-savvy family
-              that encouraged creativity and innovation. My parents, both
-              educators, instilled in me the importance of continuous learning
-              and helping others.
-            </InfoCard>
+              Born and raised in Bacoor, Cavite, I grew up as an artist —
+              drawing since a young age. Over time, I explored digital art and
+              eventually found my passion in coding and building meaningful
+              digital experiences.
+            </InfoCard> */}
 
             <InfoCard
               isDarkMode={isDarkMode}
-              title="Family & Values"
+              title="Family Background"
               icon={<Users className="text-[#2BA6FF]" size={24} />}
             >
-              Family is everything to me. Coming from a close-knit family of
-              four, including my younger sister who's pursuing medicine, we've
-              always supported each other's dreams.
+              Family is everything to me. I grew up as an artist — drawing since
+              a young age. My family inspired and encouraged my creativity,
+              which shaped who I am today. Over time, I explored digital art and
+              eventually found my passion in coding and building meaningful
+              digital experiences.
             </InfoCard>
           </div>
 
@@ -157,10 +165,10 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
             >
               <ul className="space-y-3 text-sm sm:text-base">
                 {[
-                  { label: "Location:", value: "San Francisco, CA" },
-                  { label: "Experience:", value: "5+ Years" },
-                  { label: "Projects:", value: "50+ Completed" },
-                  { label: "Coffee Consumed:", value: "∞ Cups" },
+                  { label: "Location:", value: "Bacoor, Cavite, PH" },
+                  { label: "Experience:", value: "3 Years" },
+                  { label: "Projects:", value: "20+ Completed" },
+                  { label: "Pomodoro Timer Used:", value: "999+ Hours" },
                 ].map(({ label, value }) => (
                   <li
                     key={label}
@@ -182,8 +190,8 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
 
             <SpinningImage
               isDarkMode={isDarkMode}
-              imageSrc="https://picsum.photos/800/540"
-              text="Passion • Creativity • Innovation • Teamwork • Code • Design •"
+              imageSrc="/image/tori-pixel__art.gif"
+              text=" Creativity • Innovation  • Design • "
               // width and height props removed for responsiveness
             />
           </div>

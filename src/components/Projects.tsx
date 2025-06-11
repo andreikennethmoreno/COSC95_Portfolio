@@ -6,6 +6,8 @@ import {
   Globe,
   ShoppingCart,
 } from "lucide-react";
+import Image from "next/image";
+
 
 interface ProjectsProps {
   isDarkMode: boolean;
@@ -14,49 +16,31 @@ interface ProjectsProps {
 const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
   const projects = [
     {
-      title: "EcoTrack - Sustainability App",
+      title: "Mood2Anime ⛩️",
       description:
-        "A comprehensive mobile application that helps users track their carbon footprint, set sustainability goals, and connect with eco-friendly communities.",
-      technologies: ["React Native", "Node.js", "MongoDB", "Express", "Redux"],
-      image:
-        "https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demoLink: "https://demo.ecotrack.app",
-      githubLink: "https://github.com/alexjohnson/ecotrack",
-      icon: Smartphone,
+        "Recommends anime based on your mood, connects to the Jikan API via Axios, styled with DaisyUI, and deployed on Vercel.",
+      technologies: ["React.js", "API Integration", "Tailwind CSS"],
+      image: "/image/projects/mood-thumb.png",
+      demoLink: "https://mood2-anime.vercel.app/",
+      githubLink: "https://github.com/andreikennethmoreno/Mood2Anime",
     },
     {
-      title: "DesignSystem Pro",
+      title: "BookOwl 📚",
       description:
-        "A complete design system and component library used by 50+ companies. Features comprehensive documentation, accessibility compliance, and dark mode support.",
-      technologies: [
-        "React",
-        "TypeScript",
-        "Storybook",
-        "Styled Components",
-        "Jest",
-      ],
-      image:
-        "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demoLink: "https://designsystem.pro",
-      githubLink: "https://github.com/alexjohnson/designsystem-pro",
-      icon: Globe,
+        "Track your favorite books with BookOwl, using the Google Books API and secure access via JWT and Google OAuth",
+      technologies: ["Node.js", "EJS", "PostgreSQL", "API Integration"],
+      image: "/image/projects/book-thumb.png",
+      demoLink: "https://www.youtube.com/watch?v=CcioVdIVKcg",
+      githubLink: "https://github.com/andreikennethmoreno/BookOwl",
     },
     {
-      title: "ShopFlow - E-commerce Platform",
+      title: "PlantInventory 🌱",
       description:
-        "A modern e-commerce platform with advanced analytics, inventory management, and seamless payment integration. Built for scalability and performance.",
-      technologies: [
-        "Next.js",
-        "PostgreSQL",
-        "Stripe",
-        "Tailwind CSS",
-        "Prisma",
-      ],
-      image:
-        "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demoLink: "https://shopflow.demo.com",
-      githubLink: "https://github.com/alexjohnson/shopflow",
-      icon: ShoppingCart,
+        "A full-stack inventory system built with Next.js and ShadCN UI. Features Clerk authentication, PostgreSQL via Prisma ORM, and image uploads — all deployed on Vercel.",
+      technologies: ["Next.js", "Prisma", "PostgreSQL", "Clerk"],
+      image: "/image/projects/plant-thumb.png",
+      demoLink: "https://nextjscrudauth.vercel.app/plants", // replace with actual link
+      githubLink: "https://github.com/andreikennethmoreno/nextjscrudauth", // replace if needed
     },
   ];
 
@@ -67,7 +51,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
         isDarkMode ? "border-zinc-800" : "border-zinc-200"
       }`}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto ">
         <div className="text-center mb-16">
           <h2
             className={`text-4xl sm:text-5xl font-bold mb-6 ${
@@ -91,21 +75,22 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
           style={{ minHeight: `${projects.length * 300}px` }}
         >
           {[...projects].reverse().map((project, index) => {
-            const Icon = project.icon;
             return (
               <div
                 key={project.title}
                 style={{
-                  top: `calc(${60}px + ${index * 40}px)`,
+                  top: `calc(${10}vh + ${index * 4}vh)`,
                   zIndex: index + 1, // reverse zIndex to match order
                 }}
                 className={`sticky mb-12 rounded-3xl overflow-hidden transition-all duration-500 transform  ${
-                  isDarkMode ? "bg-zinc-900 " : "bg-zinc-100 "
-                } ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
+                  isDarkMode
+                    ? "bg-zinc-900 border border-zinc-500 "
+                    : "bg-zinc-100 border border-zinc-300"
+                } ${index % 2 === 1 ? "" : ""}`}
               >
                 <div
                   className={`flex flex-col lg:flex-row ${
-                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                    index % 2 === 1 ? "" : ""
                   }`}
                 >
                   <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
@@ -175,14 +160,29 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                     </div>
                   </div>
 
-                  <div className="lg:w-1/2 relative">
-                    <div className="aspect-w-16 aspect-h-10 lg:aspect-none lg:h-full">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-64 lg:h-full object-cover transition-transform duration-500  rounded-2xl"
-                        style={{ marginTop: "60px" }}
-                      />
+                  <div className="lg:basis-1/2 lg:flex-grow relative">
+                    <div className="lg:h-full flex justify-start items-start">
+                      <div
+                        className="relative w-full h-full"
+                        style={{
+                          marginLeft: "2vh",
+                          marginTop: "6vh",
+                        }}
+                      >
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          className="rounded-tl-2xl object-cover shadow-2xl  cursor-pointer"
+                          style={{
+                            objectPosition: "left center",
+                          }}
+                          quality={95}
+                          onClick={() => window.open(project.image, "_blank")}
+                          unoptimized={false} // Let Next.js optimize
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -56,7 +56,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
               isDarkMode ? "text-zinc-400" : "text-zinc-800"
             }`}
           >
-            <span>© {currentYear} Alex Johnson. Made with</span>
+            <span>© {currentYear} Kenneth Moreno. Made with</span>
             <Heart size={16} className="mx-2 text-red-500" />
             <span>and lots of coffee.</span>
           </div>
@@ -65,7 +65,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
               isDarkMode ? "text-zinc-400" : "text-zinc-800"
             }`}
           >
-            <span>Designed & Built by Alex Johnson</span>
+            <span>Designed & Built by Kenneth Moreno</span>
           </div>
         </div>
       </div>

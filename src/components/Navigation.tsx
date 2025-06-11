@@ -49,7 +49,7 @@ const Navigation: React.FC<NavigationProps> = ({
                 isDarkMode ? "text-white" : "text-black"
               }`}
             >
-              Kenn.dev
+              kenn.dev
             </h1>
           </div>
 
@@ -64,7 +64,7 @@ const Navigation: React.FC<NavigationProps> = ({
                     ? "text-[#2BA6FF]"
                     : isDarkMode
                     ? "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-                    : "text-zinc-800 hover:bg-zinc-200 hover:text-black"
+                    : "text-zinc-800 ,hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 {item.label}
@@ -77,7 +77,7 @@ const Navigation: React.FC<NavigationProps> = ({
               className={`p-2 rounded-lg transition-all duration-200 ${
                 isDarkMode
                   ? "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-                  : "text-zinc-800 hover:bg-zinc-200 hover:text-black"
+                  : "text-zinc-800 ,hover:bg-zinc-100 hover:text-black"
               }`}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -91,7 +91,7 @@ const Navigation: React.FC<NavigationProps> = ({
               className={`p-2 rounded-lg transition-all duration-200 ${
                 isDarkMode
                   ? "text-zinc-300 hover:bg-zinc-800"
-                  : "text-zinc-800 hover:bg-zinc-200"
+                  : "text-zinc-800 ,hover:bg-zinc-100"
               }`}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -101,7 +101,7 @@ const Navigation: React.FC<NavigationProps> = ({
               className={`p-2 rounded-lg transition-all duration-200 ${
                 isDarkMode
                   ? "text-zinc-300 hover:bg-zinc-800"
-                  : "text-zinc-800 hover:bg-zinc-200"
+                  : "text-zinc-800 ,hover:bg-zinc-100"
               }`}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -127,7 +127,7 @@ const Navigation: React.FC<NavigationProps> = ({
                     ? "text-[#2BA6FF]"
                     : isDarkMode
                     ? "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-                    : "text-zinc-800 hover:bg-zinc-200 hover:text-black"
+                    : "text-zinc-800 ,hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 {item.label}

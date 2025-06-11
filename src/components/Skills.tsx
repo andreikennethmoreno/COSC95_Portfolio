@@ -16,12 +16,18 @@ const Skills: React.FC<SkillsProps> = ({ isDarkMode }) => {
     { name: "Database Design", level: 80 },
   ];
 
-  const certifications = [
-    "Google UX Design Professional Certificate",
-    "AWS Certified Solutions Architect",
-  ];
+  const certifications = {
+    "CS50x: Introduction to Computer Science (2023)":
+      "https://certificates.cs50.io/dab0986a-5bf5-4568-89bf-ce526b8a5cb1.pdf?size=letter",
+    "CS50w: Web Programming with Python and JavaScript (2024)":
+      "https://certificates.cs50.io/07cf8951-7096-4a72-9245-fcba75963f94.pdf?size=letter",
+  };
 
-  const trainings = ["Advanced Design Systems Workshop - Design+Research 2023"];
+  const trainings = {
+    "AppBrewery Fullstack Web Developer Bootcamp (2024)":
+      "https://udemy-certificate.s3.amazonaws.com/image/UC-39cc4dc6-2efe-4bb3-8903-c60993ba2cd7.jpg?v=1724748463000",
+  };
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -127,14 +133,16 @@ const Skills: React.FC<SkillsProps> = ({ isDarkMode }) => {
                 Certifications
               </h3>
               <div className="space-y-3">
-                {certifications.map((cert, index) => (
-                  <div
+                {Object.entries(certifications).map(([cert, link], index) => (
+                  <a
                     key={cert}
+                    href={link}
+                    target="_blank"
                     className={`flex items-center p-3 rounded-lg transition-all duration-300 hover:scale-105 ${
                       isDarkMode
                         ? "bg-zinc-800 hover:bg-zinc-700"
-                        : "bg-white hover:bg-zinc-200"
-                    }`}
+                        : "bg-white hover:bg-zinc-100"
+                    } cursor-pointer`}
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     <div className="w-2 h-2 bg-[#2BA6FF] rounded-full mr-3 flex-shrink-0"></div>
@@ -145,7 +153,7 @@ const Skills: React.FC<SkillsProps> = ({ isDarkMode }) => {
                     >
                       {cert}
                     </span>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
@@ -164,13 +172,15 @@ const Skills: React.FC<SkillsProps> = ({ isDarkMode }) => {
                 Recent Training
               </h3>
               <div className="space-y-3">
-                {trainings.map((training, index) => (
-                  <div
+                {Object.entries(trainings).map(([training,link], index) => (
+                  <a
+                    href={link}
+                    target="_blank"
                     key={training}
                     className={`flex items-center p-3 rounded-lg transition-all duration-300 hover:scale-105 ${
                       isDarkMode
                         ? "bg-zinc-800 hover:bg-zinc-700"
-                        : "bg-white hover:bg-zinc-200"
+                        : "bg-white ,hover:bg-zinc-100"
                     }`}
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
@@ -182,7 +192,7 @@ const Skills: React.FC<SkillsProps> = ({ isDarkMode }) => {
                     >
                       {training}
                     </span>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>

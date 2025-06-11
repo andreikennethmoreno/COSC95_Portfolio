@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Download,
   Calendar,
@@ -16,81 +15,68 @@ interface ResumeProps {
 }
 
 const Resume: React.FC<ResumeProps> = ({ isDarkMode }) => {
-  const handleDownload = () => {
-    // In a real application, this would trigger a download of an actual PDF file
-    const link = document.createElement("a");
-    link.href = "#"; // Replace with actual PDF URL
-    link.download = "Alex_Johnson_Resume.pdf";
-    link.click();
-  };
-
   const experience = [
     {
-      title: "Senior UX/UI Designer",
-      company: "TechForward Inc.",
-      location: "San Francisco, CA",
-      period: "2022 - Present",
+      title: "Technical Content Creator",
+      company: "Self-Employed / YouTube",
+      location: "Remote",
+      period: "10/2023 - Present",
       achievements: [
-        "Led design system initiative across 8 product teams, reducing design-to-development time by 40%",
-        "Redesigned core product interface, resulting in 35% increase in user engagement",
-        "Mentored 3 junior designers and established design review processes",
-        "Collaborated with PM and engineering teams on product strategy and roadmap planning",
+        "Produced and published in-depth technical tutorials on web development, with most viewed video achieving over 30k views",
+        "Developed content on modern frameworks, API integrations and simplifying complex concepts for a broad audience",
+        "Collaborated with Neon to showcase and test a beta feature—Neon Auth, a seamless authentication solution",
+        "Provided detailed feedback and suggestions to Neon's product team for improving Neon Auth's usability, documentation, and developer experience",
+        "Continuously refined content based on viewer feedback, enhancing tutorial clarity and channel growth",
       ],
     },
     {
-      title: "UX Designer",
-      company: "Innovation Labs",
-      location: "San Francisco, CA",
-      period: "2020 - 2022",
+      title: "Freelance Full Stack Developer",
+      company: "Self-Employed",
+      location: "Bacoor, Philippines",
+      period: "03/2022 - Present",
       achievements: [
-        "Designed mobile-first experiences for fintech startup serving 100k+ users",
-        "Conducted user research and usability testing for 5 major product features",
-        "Improved user onboarding flow, reducing drop-off rate by 25%",
-        "Created comprehensive style guide and component library",
-      ],
-    },
-    {
-      title: "Junior Designer",
-      company: "Creative Studio",
-      location: "San Francisco, CA",
-      period: "2019 - 2020",
-      achievements: [
-        "Designed web and mobile interfaces for diverse client portfolio",
-        "Collaborated with developers to ensure pixel-perfect implementation",
-        "Created brand identities and marketing materials for 10+ clients",
-        "Gained experience in user-centered design methodologies",
+        "Developed and maintained custom PHP/MySQL websites for fellow students consistently earning commissions and driving high user engagement",
+        "Developed a gym management application using Tkinter, featuring gym session scheduling, membership management, and secure login/logout functionality",
+        "Built a commissioned full-stack web application that improved academic performance through an intuitive, user-friendly interface",
+        "Collaborated with peers on multiple projects, reducing turnaround time by 20% through effective teamwork and agile methodologies",
+        "Implemented modern best practices in web development to enhance backend efficiency and overall system performance",
       ],
     },
   ];
 
   const education = [
     {
-      degree: "Bachelor of Fine Arts in Graphic Design",
-      school: "California College of the Arts",
-      location: "Oakland, CA",
-      period: "2015 - 2019",
-      details: "Magna Cum Laude, Dean's List, Design Excellence Award",
+      degree: "Bachelor of Science in Computer Science",
+      school: "Cavite State University",
+      location: "Bacoor, Philippines",
+      period: "06/2021 - Present",
+      details: "Currently pursuing degree in Computer Science",
     },
   ];
 
   const skills = [
-    "UI/UX Design",
-    "Figma",
-    "Adobe Creative Suite",
-    "Sketch",
-    "InVision",
-    "React",
-    "TypeScript",
-    "HTML/CSS",
     "JavaScript",
+    "PHP",
+    "Python",
+    "SQL",
+    "React.js",
+    "EJS",
+    "HTML5",
+    "CSS3",
+    "TailwindCSS",
+    "DaisyUI",
     "Node.js",
-    "User Research",
-    "Prototyping",
-    "Design Systems",
-    "Accessibility",
-    "Agile/Scrum",
-    "Project Management",
-    "Team Leadership",
+    "PostgreSQL",
+    "Express.js",
+    "RESTful API Development",
+    "JWT Authentication",
+    "Git",
+    "GitHub",
+    "Postman",
+    "Jest",
+    "Swagger",
+    "Agile Methodologies",
+    "SQLite",
   ];
 
   return (
@@ -107,7 +93,7 @@ const Resume: React.FC<ResumeProps> = ({ isDarkMode }) => {
               isDarkMode ? "text-white" : "text-black"
             }`}
           >
-            Resume
+            Resume 📑
           </h2>
         </div>
 
@@ -123,10 +109,10 @@ const Resume: React.FC<ResumeProps> = ({ isDarkMode }) => {
                 isDarkMode ? "text-white" : "text-black"
               }`}
             >
-              Alex Johnson
+              Andrei Kenneth Moreno
             </h1>
             <h2 className="text-xl text-[#2BA6FF] mb-6">
-              Senior UX/UI Designer & Developer
+              Full Stack Developer | API Development | Technical Content Creator
             </h2>
 
             <div
@@ -136,27 +122,26 @@ const Resume: React.FC<ResumeProps> = ({ isDarkMode }) => {
             >
               <div className="flex items-center">
                 <Mail size={16} className="mr-2 text-[#2BA6FF]" />
-                alex.johnson@email.com
+                kennonirom@gmail.com
               </div>
               <div className="flex items-center">
                 <Phone size={16} className="mr-2 text-[#2BA6FF]" />
-                (555) 123-4567
+                +63 915 456 4720
               </div>
               <div className="flex items-center">
                 <MapPin size={16} className="mr-2 text-[#2BA6FF]" />
-                San Francisco, CA
+                Bacoor, Cavite
               </div>
             </div>
           </div>
 
           <div className="text-center">
-            <button
-              onClick={handleDownload}
-              className="inline-flex items-center px-6 py-3 bg-[#2BA6FF] text-white rounded-lg font-medium hover:bg-[#2BA6FF]/90 transition-all duration-200 transform hover:scale-105"
-            >
-              <Download size={20} className="mr-2" />
-              Download PDF Resume
-            </button>
+            <a href="./Moreno_AndreiKenneth_A_CV.pdf" download>
+              <button className="inline-flex items-center px-6 py-3 bg-[#2BA6FF] text-white rounded-lg font-medium hover:bg-[#2BA6FF]/90 transition-all duration-200 transform hover:scale-105">
+                <Download size={20} className="mr-2" />
+                Download PDF Resume
+              </button>
+            </a>
           </div>
         </div>
 
@@ -179,13 +164,12 @@ const Resume: React.FC<ResumeProps> = ({ isDarkMode }) => {
               isDarkMode ? "text-zinc-300" : "text-zinc-800"
             }`}
           >
-            Passionate UX/UI Designer and Developer with 5+ years of experience
-            creating user-centered digital experiences. Proven track record of
-            leading design initiatives, improving user engagement, and
-            collaborating effectively with cross-functional teams. Combines
-            strong design sensibilities with technical implementation skills to
-            deliver comprehensive solutions that balance user needs with
-            business objectives.
+            Full-stack web developer with 3 years of experience building
+            dynamic, secure, and scalable web applications. Specializes in API
+            development, authentication systems, and delivering intuitive user
+            experiences. Also a technical content creator with over 30k views on
+            YouTube, known for simplifying complex development concepts and
+            collaborating with platforms like Neon to showcase beta features.
           </p>
         </div>
 
@@ -326,7 +310,7 @@ const Resume: React.FC<ResumeProps> = ({ isDarkMode }) => {
                 className={`px-4 py-2 rounded-full text-sm border transition-all duration-300 hover:scale-105 ${
                   isDarkMode
                     ? "bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-zinc-700"
-                    : "bg-white text-zinc-700 border-zinc-200 hover:bg-zinc-200"
+                    : "bg-white text-zinc-700 border-zinc-200 hover:bg-zinc-100"
                 }`}
                 style={{ animationDelay: `${index * 50}ms` }}
               >
