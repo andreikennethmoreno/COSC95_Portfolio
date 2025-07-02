@@ -250,10 +250,53 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 0 1px var(--color-accent) !important;
 }
 
-/* Theme-aware buttons */
+/* CRITICAL: Theme-aware buttons with proper text contrast */
 button {
   color: var(--color-foreground) !important;
   transition: all 0.3s ease;
+}
+
+/* Primary/Accent buttons - ALWAYS use primaryForeground for text */
+.btn-primary,
+.bg-accent,
+.bg-primary,
+button[style*="background-color: var(--color-accent)"],
+button[style*="background-color: var(--color-primary)"] {
+  color: var(--color-primary-foreground) !important;
+}
+
+/* Success buttons */
+.btn-success,
+.bg-success,
+button[style*="background-color: var(--color-success)"] {
+  color: var(--color-primary-foreground) !important;
+}
+
+/* Destructive/Error buttons */
+.btn-destructive,
+.bg-destructive,
+button[style*="background-color: var(--color-destructive)"] {
+  color: var(--color-primary-foreground) !important;
+}
+
+/* Warning buttons */
+.btn-warning,
+.bg-warning,
+button[style*="background-color: var(--color-warning)"] {
+  color: var(--color-primary-foreground) !important;
+}
+
+/* Secondary buttons */
+.btn-secondary,
+.bg-secondary,
+button[style*="background-color: var(--color-secondary)"] {
+  color: var(--color-secondary-foreground) !important;
+}
+
+/* Card background buttons */
+.bg-card,
+button[style*="background-color: var(--color-card)"] {
+  color: var(--color-foreground) !important;
 }
 
 /* Theme-aware links */
@@ -283,6 +326,10 @@ a:hover {
 
 .text-accent {
   color: var(--color-accent) !important;
+}
+
+.text-primary-foreground {
+  color: var(--color-primary-foreground) !important;
 }
 
 /* Theme-aware shadows */
@@ -324,4 +371,25 @@ section label {
 .bg-background {
   background-color: var(--color-background) !important;
   color: var(--color-foreground) !important;
+}
+
+/* CRITICAL: Force proper button text colors based on background */
+button[style*="background-color: var(--color-accent)"] *,
+button[style*="background-color: var(--color-primary)"] *,
+button[style*="background-color: var(--color-success)"] *,
+button[style*="background-color: var(--color-destructive)"] *,
+button[style*="background-color: var(--color-warning)"] * {
+  color: var(--color-primary-foreground) !important;
+}
+
+/* Ensure white text on colored buttons */
+.text-white {
+  color: #ffffff !important;
+}
+
+/* Override for specific button content */
+button .text-white,
+button[style*="background-color: var(--color-accent)"] .text-white,
+button[style*="background-color: var(--color-primary)"] .text-white {
+  color: #ffffff !important;
 }

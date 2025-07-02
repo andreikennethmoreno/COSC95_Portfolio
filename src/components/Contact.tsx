@@ -167,7 +167,7 @@ const Contact: React.FC = () => {
           >
             <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
                  style={{ backgroundColor: 'var(--color-success)' }}>
-              <CheckCircle size={40} className="text-white" />
+              <CheckCircle size={40} style={{ color: 'var(--color-primary-foreground)' }} />
             </div>
             <h2
               className="text-3xl font-bold mb-4"
@@ -300,7 +300,7 @@ const Contact: React.FC = () => {
                    style={{ 
                      backgroundColor: 'var(--color-destructive)',
                      borderColor: 'var(--color-destructive)',
-                     color: 'white'
+                     color: 'var(--color-primary-foreground)'
                    }}>
                 {submitError}
               </div>
@@ -436,18 +436,21 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 px-6 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                className="w-full py-4 px-6 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                style={{ 
+                  backgroundColor: 'var(--color-accent)',
+                  color: 'var(--color-primary-foreground)'
+                }}
               >
                 {isSubmitting ? (
                   <>
                     <Loader2 size={20} className="mr-2 animate-spin" />
-                    Sending...
+                    <span style={{ color: 'var(--color-primary-foreground)' }}>Sending...</span>
                   </>
                 ) : (
                   <>
                     <Send size={20} className="mr-2" />
-                    Send Message
+                    <span style={{ color: 'var(--color-primary-foreground)' }}>Send Message</span>
                   </>
                 )}
               </button>

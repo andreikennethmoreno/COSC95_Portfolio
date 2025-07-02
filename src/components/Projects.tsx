@@ -125,11 +125,14 @@ const Projects: React.FC = () => {
                         href={project.demoLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center px-6 py-3 text-white rounded-lg font-medium transition-all duration-200 transform"
-                        style={{ backgroundColor: 'var(--color-accent)' }}
+                        className="inline-flex items-center px-6 py-3 rounded-lg font-medium transition-all duration-200 transform"
+                        style={{ 
+                          backgroundColor: 'var(--color-accent)',
+                          color: 'var(--color-primary-foreground)'
+                        }}
                       >
                         <ExternalLink size={16} className="mr-2" />
-                        Live Demo
+                        <span style={{ color: 'var(--color-primary-foreground)' }}>Live Demo</span>
                       </a>
                       <a
                         href={project.githubLink}
@@ -143,7 +146,7 @@ const Projects: React.FC = () => {
                         }}
                       >
                         <Github size={16} className="mr-2" />
-                        GitHub
+                        <span style={{ color: 'var(--color-foreground)' }}>GitHub</span>
                       </a>
                     </div>
                   </div>

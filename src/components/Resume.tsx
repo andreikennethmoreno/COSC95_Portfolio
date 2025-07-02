@@ -130,11 +130,14 @@ const Resume: React.FC = () => {
           <div className="text-center">
             <a href="./Moreno_AndreiKenneth_A_CV.pdf" download>
               <button 
-                className="inline-flex items-center px-6 py-3 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                className="inline-flex items-center px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105"
+                style={{ 
+                  backgroundColor: 'var(--color-accent)',
+                  color: 'var(--color-primary-foreground)'
+                }}
               >
                 <Download size={20} className="mr-2" />
-                Download PDF Resume
+                <span style={{ color: 'var(--color-primary-foreground)' }}>Download PDF Resume</span>
               </button>
             </a>
           </div>

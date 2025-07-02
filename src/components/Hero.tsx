@@ -60,8 +60,11 @@ const SocialLinks = () => {
       </a>
       <a
         href="#projects"
-        className="p-3 font-bold rounded-lg transition-all duration-200 hover:scale-110 text-white"
-        style={{ backgroundColor: 'var(--color-accent)' }}
+        className="p-3 font-bold rounded-lg transition-all duration-200 hover:scale-110"
+        style={{ 
+          backgroundColor: 'var(--color-accent)',
+          color: 'var(--color-primary-foreground)'
+        }}
       >
         View Work
       </a>
