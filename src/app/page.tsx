@@ -10,28 +10,12 @@ import Navigation from "@/components/Navigation";
 import Projects from "@/components/Projects";
 import Resume from "@/components/Resume";
 import Skills from "@/components/Skills";
+import { useTheme } from "@/hooks/useTheme";
 import React, { useState, useEffect } from "react";
-
 
 function App() {
   const [activeSection, setActiveSection] = useState("hero");
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,21 +46,13 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
   return (
     <div
       className={`min-h-screen transition-colors duration-300 ${
         isDarkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      <Navigation
-        activeSection={activeSection}
-        isDarkMode={isDarkMode}
-        toggleTheme={toggleTheme}
-      />
+      <Navigation activeSection={activeSection} />
       <main className="max-w-6xl mx-auto">
         <Hero isDarkMode={isDarkMode} />
         <About isDarkMode={isDarkMode} />

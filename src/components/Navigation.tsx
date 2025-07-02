@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import ThemeSelector from "./ThemeSelector";
+import { useTheme } from "@/hooks/useTheme";
 
 interface NavigationProps {
   activeSection: string;
-  isDarkMode: boolean;
-  toggleTheme: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({
-  activeSection,
-  isDarkMode,
-  toggleTheme,
-}) => {
+const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { currentTheme, changeTheme, toggleTheme, isDarkMode } = useTheme();
 
   const navItems = [
     { id: "hero", label: "Home" },
@@ -54,7 +51,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1 ">
+          <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -64,20 +61,27 @@ const Navigation: React.FC<NavigationProps> = ({
                     ? "text-[#2BA6FF]"
                     : isDarkMode
                     ? "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-                    : "text-zinc-800 ,hover:bg-zinc-100 hover:text-black"
+                    : "text-zinc-800 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 {item.label}
               </button>
             ))}
 
-            {/* Theme Toggle */}
+            {/* Theme Selector */}
+            <ThemeSelector
+              currentTheme={currentTheme}
+              onThemeChange={changeTheme}
+              isDarkMode={isDarkMode}
+            />
+
+            {/* Legacy Theme Toggle */}
             <button
               onClick={toggleTheme}
               className={`p-2 rounded-lg transition-all duration-200 ${
                 isDarkMode
                   ? "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-                  : "text-zinc-800 ,hover:bg-zinc-100 hover:text-black"
+                  : "text-zinc-800 hover:bg-zinc-100 hover:text-black"
               }`}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -86,12 +90,17 @@ const Navigation: React.FC<NavigationProps> = ({
 
           {/* Mobile menu button */}
           <div className="lg:hidden flex items-center space-x-2">
+            <ThemeSelector
+              currentTheme={currentTheme}
+              onThemeChange={changeTheme}
+              isDarkMode={isDarkMode}
+            />
             <button
               onClick={toggleTheme}
               className={`p-2 rounded-lg transition-all duration-200 ${
                 isDarkMode
                   ? "text-zinc-300 hover:bg-zinc-800"
-                  : "text-zinc-800 ,hover:bg-zinc-100"
+                  : "text-zinc-800 hover:bg-zinc-100"
               }`}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -101,7 +110,7 @@ const Navigation: React.FC<NavigationProps> = ({
               className={`p-2 rounded-lg transition-all duration-200 ${
                 isDarkMode
                   ? "text-zinc-300 hover:bg-zinc-800"
-                  : "text-zinc-800 ,hover:bg-zinc-100"
+                  : "text-zinc-800 hover:bg-zinc-100"
               }`}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -127,7 +136,7 @@ const Navigation: React.FC<NavigationProps> = ({
                     ? "text-[#2BA6FF]"
                     : isDarkMode
                     ? "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-                    : "text-zinc-800 ,hover:bg-zinc-100 hover:text-black"
+                    : "text-zinc-800 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 {item.label}

@@ -4,6 +4,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Default light theme colors */
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-card: #f4f4f5;
+  --color-card-hover: #f4f4f5;
+  --color-border: #e4e4e7;
+  --color-accent: #2BA6FF;
+  --color-muted: #f4f4f5;
+  --color-muted-foreground: #71717a;
+  --color-secondary: #f4f4f5;
+  --color-secondary-foreground: #18181b;
+  --color-primary: #2BA6FF;
+  --color-primary-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,8 +38,10 @@ body {
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: zincscale;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }
 
 /* Dark mode class */
@@ -38,12 +59,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2ba6ff;
+  background: var(--color-accent);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2196f3;
+  background: var(--color-primary);
 }
 
 /* Dark mode scrollbar */
@@ -109,20 +130,8 @@ textarea:focus {
 
 /* Smooth transitions for theme switching */
 * {
-  transition: background-color 0.1s ease, color 0.1s ease,
-    border-color 0.1s ease;
-}
-
-/* Ensure proper contrast in both themes */
-.dark {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-/* Light theme overrides */
-:root:not(.dark) {
-  background-color: #ffffff;
-  color: #000000;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 @keyframes blob {
@@ -181,5 +190,3 @@ textarea:focus {
 .animate-spin-slow {
   animation: spin-slow 60s linear infinite;
 }
-
-
