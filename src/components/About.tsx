@@ -26,7 +26,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
         style={{ color: 'var(--color-foreground)' }}
       >
         <span className="flex-shrink-0">{icon}</span>
-        <span>{title}</span>
+        <span style={{ color: 'var(--color-foreground)' }}>{title}</span>
       </h3>
       <div
         className="leading-relaxed text-sm sm:text-base"
@@ -116,22 +116,26 @@ const About: React.FC = () => {
               title="The Real Me"
               icon={<Heart style={{ color: 'var(--color-accent)' }} size={24} />}
             >
-              I'm a web developer with 3 years of experience building full-stack
-              apps and tutorials that I love to share on my YouTube channel. I
-              believe that serving people is the path to a fulfilling life, and
-              I strive to reflect that in the work I do and the content I
-              create.
+              <span style={{ color: 'var(--color-muted-foreground)' }}>
+                I'm a web developer with 3 years of experience building full-stack
+                apps and tutorials that I love to share on my YouTube channel. I
+                believe that serving people is the path to a fulfilling life, and
+                I strive to reflect that in the work I do and the content I
+                create.
+              </span>
             </InfoCard>
 
             <InfoCard
               title="Family Background"
               icon={<Users style={{ color: 'var(--color-accent)' }} size={24} />}
             >
-              Family is everything to me. I grew up as an artist — drawing since
-              a young age. My family inspired and encouraged my creativity,
-              which shaped who I am today. Over time, I explored digital art and
-              eventually found my passion in coding and building meaningful
-              digital experiences.
+              <span style={{ color: 'var(--color-muted-foreground)' }}>
+                Family is everything to me. I grew up as an artist — drawing since
+                a young age. My family inspired and encouraged my creativity,
+                which shaped who I am today. Over time, I explored digital art and
+                eventually found my passion in coding and building meaningful
+                digital experiences.
+              </span>
             </InfoCard>
           </div>
 
@@ -151,10 +155,10 @@ const About: React.FC = () => {
                     key={label}
                     className="flex justify-between"
                   >
-                    <span>{label}</span>
+                    <span style={{ color: 'var(--color-muted-foreground)' }}>{label}</span>
                     <span
                       className="font-bold"
-                      style={{ color: 'var(--color-muted-foreground)' }}
+                      style={{ color: 'var(--color-foreground)' }}
                     >
                       {value}
                     </span>

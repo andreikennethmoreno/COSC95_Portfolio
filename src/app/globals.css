@@ -7,20 +7,20 @@
 :root {
   /* Default light theme colors */
   --color-background: #ffffff;
-  --color-foreground: #000000;
-  --color-card: #f4f4f5;
-  --color-card-hover: #f4f4f5;
-  --color-border: #e4e4e7;
-  --color-accent: #2BA6FF;
-  --color-muted: #f4f4f5;
-  --color-muted-foreground: #71717a;
-  --color-secondary: #f4f4f5;
-  --color-secondary-foreground: #18181b;
-  --color-primary: #2BA6FF;
+  --color-foreground: #0f172a;
+  --color-card: #f8fafc;
+  --color-card-hover: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-accent: #2563eb;
+  --color-muted: #f8fafc;
+  --color-muted-foreground: #64748b;
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+  --color-primary: #2563eb;
   --color-primary-foreground: #ffffff;
-  --color-destructive: #ef4444;
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
+  --color-destructive: #dc2626;
+  --color-success: #16a34a;
+  --color-warning: #ca8a04;
 }
 
 * {
@@ -200,41 +200,70 @@ button, a, input, textarea {
   color: var(--color-foreground) !important;
 }
 
-/* Ensure all text elements inherit theme colors */
+/* Ensure all text elements inherit theme colors properly */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--color-foreground);
+  color: var(--color-foreground) !important;
 }
 
-p, span, div {
-  color: inherit;
+p {
+  color: var(--color-foreground) !important;
+}
+
+span {
+  color: inherit !important;
+}
+
+div {
+  color: inherit !important;
+}
+
+/* Override any existing text color classes */
+.text-gray-600,
+.text-gray-700,
+.text-gray-800,
+.text-gray-900,
+.text-zinc-600,
+.text-zinc-700,
+.text-zinc-800,
+.text-zinc-900,
+.text-slate-600,
+.text-slate-700,
+.text-slate-800,
+.text-slate-900 {
+  color: var(--color-muted-foreground) !important;
+}
+
+.text-black,
+.text-white {
+  color: var(--color-foreground) !important;
 }
 
 /* Theme-aware form elements */
 input, textarea, select {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  border-color: var(--color-border);
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
+  border-color: var(--color-border) !important;
 }
 
 input:focus, textarea:focus, select:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 1px var(--color-accent);
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 1px var(--color-accent) !important;
 }
 
 /* Theme-aware buttons */
 button {
-  color: var(--color-foreground);
+  color: var(--color-foreground) !important;
   transition: all 0.3s ease;
 }
 
 /* Theme-aware links */
 a {
-  color: var(--color-foreground);
+  color: var(--color-foreground) !important;
   transition: all 0.3s ease;
 }
 
 a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent) !important;
 }
 
 /* Enhanced backdrop blur for navigation */
@@ -243,17 +272,17 @@ a:hover {
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* Ensure proper contrast for all themes */
+/* Utility classes for theme colors */
 .text-contrast {
-  color: var(--color-foreground);
+  color: var(--color-foreground) !important;
 }
 
 .text-muted {
-  color: var(--color-muted-foreground);
+  color: var(--color-muted-foreground) !important;
 }
 
 .text-accent {
-  color: var(--color-accent);
+  color: var(--color-accent) !important;
 }
 
 /* Theme-aware shadows */
@@ -264,4 +293,35 @@ a:hover {
 /* Enhanced theme transitions */
 .theme-transition {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Force theme colors on all text elements */
+section h1,
+section h2,
+section h3,
+section h4,
+section h5,
+section h6,
+section p,
+section span,
+section div,
+section li,
+section label {
+  color: inherit !important;
+}
+
+/* Specific overrides for muted text */
+.text-muted-foreground {
+  color: var(--color-muted-foreground) !important;
+}
+
+/* Ensure proper text contrast in all themes */
+.bg-card {
+  background-color: var(--color-card) !important;
+  color: var(--color-foreground) !important;
+}
+
+.bg-background {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
 }
