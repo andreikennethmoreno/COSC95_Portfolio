@@ -1,43 +1,36 @@
 import React from "react";
 import { Heart, MapPin, Users } from "lucide-react";
-
-interface AboutProps {
-  isDarkMode: boolean;
-}
+import { useTheme } from "@/hooks/useTheme";
 
 interface InfoCardProps {
-  isDarkMode: boolean;
   title: string;
   icon: React.ReactNode;
   children: React.ReactNode;
 }
 
 const InfoCard: React.FC<InfoCardProps> = ({
-  isDarkMode,
   title,
   icon,
   children,
 }) => {
   return (
     <div
-      className={`rounded-2xl p-6 sm:p-8 transition-transform duration-300 hover:scale-105 ${
-        isDarkMode
-          ? "bg-zinc-900 hover:bg-zinc-800"
-          : "bg-zinc-100 hover:bg-zinc-100"
-      }`}
+      className="rounded-2xl p-6 sm:p-8 transition-transform duration-300 hover:scale-105"
+      style={{
+        backgroundColor: 'var(--color-card)',
+        color: 'var(--color-foreground)'
+      }}
     >
       <h3
-        className={`text-xl sm:text-2xl font-semibold mb-4 flex flex-col sm:flex-row items-center sm:items-center gap-2 ${
-          isDarkMode ? "text-white" : "text-black"
-        }`}
+        className="text-xl sm:text-2xl font-semibold mb-4 flex flex-col sm:flex-row items-center sm:items-center gap-2"
+        style={{ color: 'var(--color-foreground)' }}
       >
         <span className="flex-shrink-0">{icon}</span>
         <span>{title}</span>
       </h3>
       <div
-        className={`${
-          isDarkMode ? "text-zinc-300" : "text-zinc-800"
-        } leading-relaxed text-sm sm:text-base`}
+        className="leading-relaxed text-sm sm:text-base"
+        style={{ color: 'var(--color-muted-foreground)' }}
       >
         {children}
       </div>
@@ -46,7 +39,6 @@ const InfoCard: React.FC<InfoCardProps> = ({
 };
 
 interface SpinningImageProps {
-  isDarkMode: boolean;
   imageSrc: string;
   text: string;
   width?: string;
@@ -54,7 +46,6 @@ interface SpinningImageProps {
 }
 
 const SpinningImage: React.FC<SpinningImageProps> = ({
-  isDarkMode,
   imageSrc,
   text,
   width = "100%",
@@ -85,7 +76,7 @@ const SpinningImage: React.FC<SpinningImageProps> = ({
             />
           </defs>
           <text
-            fill={"#000000"}
+            fill="var(--color-foreground)"
             fontSize="16"
             fontWeight="bold"
             fontFamily="monospace"
@@ -100,20 +91,20 @@ const SpinningImage: React.FC<SpinningImageProps> = ({
   );
 };
 
-const About: React.FC<AboutProps> = ({ isDarkMode }) => {
+const About: React.FC = () => {
+  const { isDarkMode } = useTheme();
+
   return (
     <section
       id="about"
-      className={`py-16 px-4 sm:px-6 lg:px-8 border-t ${
-        isDarkMode ? "border-zinc-800" : "border-zinc-100"
-      }`}
+      className="py-16 px-4 sm:px-6 lg:px-8 border-t"
+      style={{ borderColor: 'var(--color-border)' }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 sm:mb-16">
           <h2
-            className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6"
+            style={{ color: 'var(--color-foreground)' }}
           >
             About Me 💡
           </h2>
@@ -122,9 +113,8 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           <div className="space-y-6">
             <InfoCard
-              isDarkMode={isDarkMode}
               title="The Real Me"
-              icon={<Heart className="text-[#2BA6FF]" size={24} />}
+              icon={<Heart style={{ color: 'var(--color-accent)' }} size={24} />}
             >
               I'm a web developer with 3 years of experience building full-stack
               apps and tutorials that I love to share on my YouTube channel. I
@@ -133,21 +123,9 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
               create.
             </InfoCard>
 
-            {/* <InfoCard
-              isDarkMode={isDarkMode}
-              title="Background"
-              icon={<MapPin className="text-[#2BA6FF]" size={24} />}
-            >
-              Born and raised in Bacoor, Cavite, I grew up as an artist —
-              drawing since a young age. Over time, I explored digital art and
-              eventually found my passion in coding and building meaningful
-              digital experiences.
-            </InfoCard> */}
-
             <InfoCard
-              isDarkMode={isDarkMode}
               title="Family Background"
-              icon={<Users className="text-[#2BA6FF]" size={24} />}
+              icon={<Users style={{ color: 'var(--color-accent)' }} size={24} />}
             >
               Family is everything to me. I grew up as an artist — drawing since
               a young age. My family inspired and encouraged my creativity,
@@ -159,9 +137,8 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
 
           <div className="space-y-6">
             <InfoCard
-              isDarkMode={isDarkMode}
               title="Quick Facts"
-              icon={<MapPin className="text-[#2BA6FF]" size={24} />}
+              icon={<MapPin style={{ color: 'var(--color-accent)' }} size={24} />}
             >
               <ul className="space-y-3 text-sm sm:text-base">
                 {[
@@ -173,13 +150,11 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
                   <li
                     key={label}
                     className="flex justify-between"
-                    // text colors handled inside InfoCard
                   >
                     <span>{label}</span>
                     <span
-                      className={`font-bold ${
-                        isDarkMode ? "text-zinc-300" : "text-zinc-800"
-                      }`}
+                      className="font-bold"
+                      style={{ color: 'var(--color-muted-foreground)' }}
                     >
                       {value}
                     </span>
@@ -189,10 +164,8 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
             </InfoCard>
 
             <SpinningImage
-              isDarkMode={isDarkMode}
               imageSrc="/image/tori-pixel__art.gif"
               text=" Creativity • Innovation  • Design • "
-              // width and height props removed for responsiveness
             />
           </div>
         </div>

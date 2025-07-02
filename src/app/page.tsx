@@ -47,25 +47,21 @@ function App() {
   }, []);
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-300 ${
-        isDarkMode ? "bg-black text-white" : "bg-white text-black"
-      }`}
-    >
+    <div className="min-h-screen transition-colors duration-300">
       <Navigation activeSection={activeSection} />
       <main className="max-w-6xl mx-auto">
         <Hero isDarkMode={isDarkMode} />
-        <About isDarkMode={isDarkMode} />
-        <Skills isDarkMode={isDarkMode} />
+        <About />
+        <Skills />
         <div id="your-section-id">
-          <Projects isDarkMode={isDarkMode} />
+          <Projects />
         </div>
-        <Challenges isDarkMode={isDarkMode} />
-        <FuturePlans isDarkMode={isDarkMode} />
-        <Resume isDarkMode={isDarkMode} />
-        <Contact isDarkMode={isDarkMode} />
+        <Challenges />
+        <FuturePlans />
+        <Resume />
+        <Contact />
       </main>
-      <Footer isDarkMode={isDarkMode} />
+      <Footer />
     </div>
   );
 }

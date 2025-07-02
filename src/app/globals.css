@@ -190,3 +190,9 @@ textarea:focus {
 .animate-spin-slow {
   animation: spin-slow 60s linear infinite;
 }
+
+/* Fix for project cards using CSS variables */
+[data-style] {
+  background-color: var(--color-card) !important;
+  border-color: var(--color-border) !important;
+}

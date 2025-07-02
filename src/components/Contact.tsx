@@ -6,18 +6,15 @@ import {
   Send,
   Github,
   Linkedin,
-  Twitter,
-  MessageSquare,
   CheckCircle,
   Loader2,
   Youtube,
 } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
 
-interface ContactProps {
-  isDarkMode: boolean;
-}
-
-const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
+const Contact: React.FC = () => {
+  const { isDarkMode } = useTheme();
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -108,12 +105,10 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
 
-    // Clear submit error when user makes changes
     if (submitError) {
       setSubmitError("");
     }
@@ -129,7 +124,7 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
     {
       icon: Phone,
       label: "Phone",
-      value: "+63 915 4564 720", // Replace with your actual number
+      value: "+63 915 4564 720",
       href: "tel:+63915 4564 720",
     },
     {
@@ -144,17 +139,17 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com/andreikennethmoreno/", // Replace with your GitHub
+      href: "https://github.com/andreikennethmoreno/",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/kenn-onirom-350a72300/", // Replace with your LinkedIn
+      href: "https://www.linkedin.com/in/kenn-onirom-350a72300/",
     },
     {
       icon: Youtube,
       label: "Youtube",
-      href: "https://www.youtube.com/@KennOnirom", // Replace with your Twitter
+      href: "https://www.youtube.com/@KennOnirom",
     },
   ];
 
@@ -162,30 +157,27 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
     return (
       <section
         id="contact"
-        className={`py-20 px-4 sm:px-6 lg:px-8 border-t ${
-          isDarkMode ? "border-zinc-800" : "border-zinc-200"
-        }`}
+        className="py-20 px-4 sm:px-6 lg:px-8 border-t"
+        style={{ borderColor: 'var(--color-border)' }}
       >
         <div className="max-w-4xl mx-auto text-center">
           <div
-            className={`rounded-3xl p-12 ${
-              isDarkMode ? "bg-zinc-900" : "bg-zinc-100"
-            }`}
+            className="rounded-3xl p-12"
+            style={{ backgroundColor: 'var(--color-card)' }}
           >
-            <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                 style={{ backgroundColor: 'var(--color-success)' }}>
               <CheckCircle size={40} className="text-white" />
             </div>
             <h2
-              className={`text-3xl font-bold mb-4 ${
-                isDarkMode ? "text-white" : "text-black"
-              }`}
+              className="text-3xl font-bold mb-4"
+              style={{ color: 'var(--color-foreground)' }}
             >
               Message Sent Successfully!
             </h2>
             <p
-              className={`text-lg ${
-                isDarkMode ? "text-zinc-300" : "text-zinc-800"
-              }`}
+              className="text-lg"
+              style={{ color: 'var(--color-muted-foreground)' }}
             >
               Thank you for reaching out! I'll get back to you as soon as
               possible.
@@ -196,30 +188,23 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
     );
   }
 
-  const iconStyle = isDarkMode
-    ? "bg-zinc-800 text-zinc-300 hover:text-white"
-    : "bg-zinc-200 text-zinc-800 hover:text-black";
-
   return (
     <section
       id="contact"
-      className={`py-20 px-4 sm:px-6 lg:px-8 border-t ${
-        isDarkMode ? "border-zinc-800" : "border-zinc-200"
-      }`}
+      className="py-20 px-4 sm:px-6 lg:px-8 border-t"
+      style={{ borderColor: 'var(--color-border)' }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2
-            className={`text-4xl sm:text-5xl font-bold mb-6 ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
+            className="text-4xl sm:text-5xl font-bold mb-6"
+            style={{ color: 'var(--color-foreground)' }}
           >
             Let's Connect 👇
           </h2>
           <p
-            className={`mt-6 max-w-2xl mx-auto ${
-              isDarkMode ? "text-zinc-400" : "text-zinc-800"
-            }`}
+            className="mt-6 max-w-2xl mx-auto"
+            style={{ color: 'var(--color-muted-foreground)' }}
           >
             Have a project in mind or just want to chat about development? I'd
             love to hear from you. Let's create something amazing together.
@@ -227,13 +212,11 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
         </div>
 
         <div className="grid lg:grid-cols-[0.5fr_2fr] gap-12">
-          {/* Contact Information */}
           <div className="space-y-8">
             <div>
               <h3
-                className={`text-2xl font-semibold mb-6 ${
-                  isDarkMode ? "text-white" : "text-black"
-                }`}
+                className="text-2xl font-semibold mb-6"
+                style={{ color: 'var(--color-foreground)' }}
               >
                 Get In Touch
               </h3>
@@ -244,27 +227,22 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                     <a
                       key={info.label}
                       href={info.href}
-                      className={`flex items-center p-4 rounded-2xl transition-all duration-300 transform hover:scale-105 group ${
-                        isDarkMode
-                          ? "bg-zinc-800 hover:bg-zinc-700"
-                          : "bg-zinc-100 ,hover:bg-zinc-100"
-                      }`}
+                      className="flex items-center p-4 rounded-2xl transition-all duration-300 transform hover:scale-105 group"
+                      style={{ backgroundColor: 'var(--color-card)' }}
                     >
                       <div className="p-3 rounded-xl mr-4">
-                        <Icon size={24} className="text-[#2BA6FF]" />
+                        <Icon size={24} style={{ color: 'var(--color-accent)' }} />
                       </div>
                       <div>
                         <p
-                          className={`text-sm ${
-                            isDarkMode ? "text-zinc-400" : "text-zinc-500"
-                          }`}
+                          className="text-sm"
+                          style={{ color: 'var(--color-muted-foreground)' }}
                         >
                           {info.label}
                         </p>
                         <p
-                          className={`font-medium ${
-                            isDarkMode ? "text-white" : "text-black"
-                          }`}
+                          className="font-medium"
+                          style={{ color: 'var(--color-foreground)' }}
                         >
                           {info.value}
                         </p>
@@ -277,9 +255,8 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
 
             <div>
               <h3
-                className={`text-2xl font-semibold mb-6 ${
-                  isDarkMode ? "text-white" : "text-black"
-                }`}
+                className="text-2xl font-semibold mb-6"
+                style={{ color: 'var(--color-foreground)' }}
               >
                 Follow Me
               </h3>
@@ -292,7 +269,11 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-4 ${iconStyle} rounded-2xl transition-all duration-300 transform hover:scale-110`}
+                      className="p-4 rounded-2xl transition-all duration-300 transform hover:scale-110"
+                      style={{ 
+                        backgroundColor: 'var(--color-card)',
+                        color: 'var(--color-muted-foreground)'
+                      }}
                       title={social.label}
                     >
                       <Icon size={24} />
@@ -303,22 +284,24 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div
-            className={`rounded-3xl p-8 ${
-              isDarkMode ? "bg-zinc-900" : "bg-zinc-100"
-            }`}
+            className="rounded-3xl p-8"
+            style={{ backgroundColor: 'var(--color-card)' }}
           >
             <h3
-              className={`text-2xl font-semibold mb-6 ${
-                isDarkMode ? "text-white" : "text-black"
-              }`}
+              className="text-2xl font-semibold mb-6"
+              style={{ color: 'var(--color-foreground)' }}
             >
               Send a Message
             </h3>
 
             {submitError && (
-              <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-xl">
+              <div className="mb-6 p-4 border rounded-xl"
+                   style={{ 
+                     backgroundColor: 'var(--color-destructive)',
+                     borderColor: 'var(--color-destructive)',
+                     color: 'white'
+                   }}>
                 {submitError}
               </div>
             )}
@@ -328,9 +311,8 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                 <div>
                   <label
                     htmlFor="name"
-                    className={`block font-medium mb-2 ${
-                      isDarkMode ? "text-white" : "text-black"
-                    }`}
+                    className="block font-medium mb-2"
+                    style={{ color: 'var(--color-foreground)' }}
                   >
                     Name *
                   </label>
@@ -341,26 +323,27 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                     value={formData.name}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] disabled:opacity-50 disabled:cursor-not-allowed ${
-                      errors.name
-                        ? "border-red-500"
-                        : isDarkMode
-                        ? "bg-zinc-800 border-zinc-700 text-white placeholder-zinc-400"
-                        : "bg-white border-zinc-200 text-black placeholder-zinc-500"
-                    }`}
+                    className="w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{
+                      backgroundColor: 'var(--color-background)',
+                      borderColor: errors.name ? 'var(--color-destructive)' : 'var(--color-border)',
+                      color: 'var(--color-foreground)',
+                      '--tw-ring-color': 'var(--color-accent)'
+                    } as React.CSSProperties}
                     placeholder="Your full name"
                   />
                   {errors.name && (
-                    <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                    <p className="text-sm mt-1" style={{ color: 'var(--color-destructive)' }}>
+                      {errors.name}
+                    </p>
                   )}
                 </div>
 
                 <div>
                   <label
                     htmlFor="email"
-                    className={`block font-medium mb-2 ${
-                      isDarkMode ? "text-white" : "text-black"
-                    }`}
+                    className="block font-medium mb-2"
+                    style={{ color: 'var(--color-foreground)' }}
                   >
                     Email *
                   </label>
@@ -371,17 +354,19 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                     value={formData.email}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] disabled:opacity-50 disabled:cursor-not-allowed ${
-                      errors.email
-                        ? "border-red-500"
-                        : isDarkMode
-                        ? "bg-zinc-800 border-zinc-700 text-white placeholder-zinc-400"
-                        : "bg-white border-zinc-200 text-black placeholder-zinc-500"
-                    }`}
+                    className="w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{
+                      backgroundColor: 'var(--color-background)',
+                      borderColor: errors.email ? 'var(--color-destructive)' : 'var(--color-border)',
+                      color: 'var(--color-foreground)',
+                      '--tw-ring-color': 'var(--color-accent)'
+                    } as React.CSSProperties}
                     placeholder="your.email@example.com"
                   />
                   {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                    <p className="text-sm mt-1" style={{ color: 'var(--color-destructive)' }}>
+                      {errors.email}
+                    </p>
                   )}
                 </div>
               </div>
@@ -389,9 +374,8 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
               <div>
                 <label
                   htmlFor="subject"
-                  className={`block font-medium mb-2 ${
-                    isDarkMode ? "text-white" : "text-black"
-                  }`}
+                  className="block font-medium mb-2"
+                  style={{ color: 'var(--color-foreground)' }}
                 >
                   Subject *
                 </label>
@@ -402,26 +386,27 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                   value={formData.subject}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] disabled:opacity-50 disabled:cursor-not-allowed ${
-                    errors.subject
-                      ? "border-red-500"
-                      : isDarkMode
-                      ? "bg-zinc-800 border-zinc-700 text-white placeholder-zinc-400"
-                      : "bg-white border-zinc-200 text-black placeholder-zinc-500"
-                  }`}
+                  className="w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{
+                    backgroundColor: 'var(--color-background)',
+                    borderColor: errors.subject ? 'var(--color-destructive)' : 'var(--color-border)',
+                    color: 'var(--color-foreground)',
+                    '--tw-ring-color': 'var(--color-accent)'
+                  } as React.CSSProperties}
                   placeholder="What's this about?"
                 />
                 {errors.subject && (
-                  <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+                  <p className="text-sm mt-1" style={{ color: 'var(--color-destructive)' }}>
+                    {errors.subject}
+                  </p>
                 )}
               </div>
 
               <div>
                 <label
                   htmlFor="message"
-                  className={`block font-medium mb-2 ${
-                    isDarkMode ? "text-white" : "text-black"
-                  }`}
+                  className="block font-medium mb-2"
+                  style={{ color: 'var(--color-foreground)' }}
                 >
                   Message *
                 </label>
@@ -432,24 +417,27 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className={`w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2BA6FF] resize-none disabled:opacity-50 disabled:cursor-not-allowed ${
-                    errors.message
-                      ? "border-red-500"
-                      : isDarkMode
-                      ? "bg-zinc-800 border-zinc-700 text-white placeholder-zinc-400"
-                      : "bg-white border-zinc-200 text-black placeholder-zinc-500"
-                  }`}
+                  className="w-full px-4 py-3 border rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{
+                    backgroundColor: 'var(--color-background)',
+                    borderColor: errors.message ? 'var(--color-destructive)' : 'var(--color-border)',
+                    color: 'var(--color-foreground)',
+                    '--tw-ring-color': 'var(--color-accent)'
+                  } as React.CSSProperties}
                   placeholder="Tell me about your project or just say hello..."
                 ></textarea>
                 {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                  <p className="text-sm mt-1" style={{ color: 'var(--color-destructive)' }}>
+                    {errors.message}
+                  </p>
                 )}
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 px-6 bg-[#2BA6FF] text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center hover:bg-[#2BA6FF]/90 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full py-4 px-6 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                style={{ backgroundColor: 'var(--color-accent)' }}
               >
                 {isSubmitting ? (
                   <>

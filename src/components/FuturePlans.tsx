@@ -1,11 +1,10 @@
 import React from "react";
-import { Rocket, BookOpen, Users, Globe, Brain, Heart, Cpu, GraduationCap, Code2, Youtube, Plane, Briefcase } from "lucide-react";
+import { Cpu, GraduationCap, Code2, Youtube, Plane, Briefcase } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
 
-interface FuturePlansProps {
-  isDarkMode: boolean;
-}
-
-const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
+const FuturePlans: React.FC = () => {
+  const { isDarkMode } = useTheme();
+  
   const shortTermGoals = [
     {
       title: "Build AI-Powered Web Projects",
@@ -63,35 +62,30 @@ const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
   return (
     <section
       id="future"
-      className={`py-20 px-4 sm:px-6 lg:px-8 border-t ${
-        isDarkMode ? "border-zinc-800" : "border-zinc-200"
-      }`}
+      className="py-20 px-4 sm:px-6 lg:px-8 border-t"
+      style={{ borderColor: 'var(--color-border)' }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2
-            className={`text-4xl sm:text-5xl font-bold mb-6 ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
+            className="text-4xl sm:text-5xl font-bold mb-6"
+            style={{ color: 'var(--color-foreground)' }}
           >
             Future Vision 🎯
           </h2>
           <p
-            className={`mt-6 max-w-2xl mx-auto ${
-              isDarkMode ? "text-zinc-400" : "text-zinc-800"
-            }`}
+            className="mt-6 max-w-2xl mx-auto"
+            style={{ color: 'var(--color-muted-foreground)' }}
           >
             Looking ahead, I'm excited about the opportunities to grow, learn,
             and make a meaningful impact through design and technology.
           </p>
         </div>
 
-        {/* Short-term Goals */}
         <div className="mb-20">
           <h3
-            className={`text-3xl font-semibold mb-12 text-center ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
+            className="text-3xl font-semibold mb-12 text-center"
+            style={{ color: 'var(--color-foreground)' }}
           >
             Next 12 Months
           </h3>
@@ -101,34 +95,31 @@ const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
               return (
                 <div
                   key={goal.title}
-                  className={`rounded-3xl p-8 transition-all duration-500 transform hover:scale-105 group ${
-                    isDarkMode
-                      ? "bg-zinc-900 hover:bg-zinc-800"
-                      : "bg-zinc-100 ,hover:bg-zinc-100"
-                  }`}
-                  style={{ animationDelay: `${index * 200}ms` }}
+                  className="rounded-3xl p-8 transition-all duration-500 transform hover:scale-105 group"
+                  style={{ backgroundColor: 'var(--color-card)' }}
                 >
                   <div className="p-4 rounded-2xl w-fit mb-6">
-                    <Icon size={32} className="text-[#2BA6FF]" />
+                    <Icon size={32} style={{ color: 'var(--color-accent)' }} />
                   </div>
 
                   <h4
-                    className={`text-xl font-bold mb-3 ${
-                      isDarkMode ? "text-white" : "text-black"
-                    }`}
+                    className="text-xl font-bold mb-3"
+                    style={{ color: 'var(--color-foreground)' }}
                   >
                     {goal.title}
                   </h4>
 
                   <p
-                    className={`mb-4 leading-relaxed ${
-                      isDarkMode ? "text-zinc-300" : "text-zinc-800"
-                    }`}
+                    className="mb-4 leading-relaxed"
+                    style={{ color: 'var(--color-muted-foreground)' }}
                   >
                     {goal.description}
                   </p>
 
-                  <div className="inline-flex items-center px-3 py-1 bg-[#2BA6FF] rounded-full text-white text-sm font-medium">
+                  <div 
+                    className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-white"
+                    style={{ backgroundColor: 'var(--color-accent)' }}
+                  >
                     Target: {goal.timeline}
                   </div>
                 </div>
@@ -137,58 +128,51 @@ const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
           </div>
         </div>
 
-        {/* Long-term Vision */}
         <div className="mb-12 max-w-4xl mx-auto">
           <h3
-            className={`text-3xl font-semibold mb-12 text-center ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
+            className="text-3xl font-semibold mb-12 text-center"
+            style={{ color: 'var(--color-foreground)' }}
           >
             Long-term Vision
           </h3>
 
           <div
-            className={`divide-y-2 ${
-              isDarkMode ? "divide-zinc-700" : "divide-zinc-200"
-            }`}
+            className="divide-y-2"
+            style={{ borderColor: 'var(--color-border)' }}
           >
             {longTermVision.map((vision) => {
               const Icon = vision.icon;
-              const iconStyle = isDarkMode
-                ? "bg-zinc-800 text-zinc-300 hover:text-white"
-                : "bg-zinc-200 text-zinc-800 hover:text-black";
               return (
                 <div
                   key={vision.title}
                   className="py-8 flex flex-wrap md:flex-nowrap items-start"
                 >
-                  {/* Left sidebar: category & date */}
                   <div className="md:w-48 flex-shrink-0 mb-4 md:mb-0 flex flex-col">
                     <span
-                      className={`font-semibold title-font ${
-                        isDarkMode ? "text-zinc-300" : "text-zinc-700"
-                      }`}
+                      className="font-semibold title-font"
+                      style={{ color: 'var(--color-muted-foreground)' }}
                     >
                       {vision.category || "CATEGORY"}
                     </span>
                     <span
-                      className={`text-sm mt-1 ${
-                        isDarkMode ? "text-zinc-500" : "text-zinc-500"
-                      }`}
+                      className="text-sm mt-1"
+                      style={{ color: 'var(--color-muted-foreground)' }}
                     >
                       {vision.date || "Date TBD"}
                     </span>
                   </div>
 
-                  {/* Right main content */}
                   <div className="md:flex-grow">
                     <h4
-                      className={`text-2xl font-medium mb-2 ${
-                        isDarkMode ? "text-white" : "text-zinc-900"
-                      } flex items-center gap-3`}
+                      className="text-2xl font-medium mb-2 flex items-center gap-3"
+                      style={{ color: 'var(--color-foreground)' }}
                     >
                       <div
-                        className={`p-2 rounded-lg inline-flex ${iconStyle}`}
+                        className="p-2 rounded-lg inline-flex"
+                        style={{ 
+                          backgroundColor: 'var(--color-card)',
+                          color: 'var(--color-muted-foreground)'
+                        }}
                       >
                         <Icon size={24} />
                       </div>
@@ -196,14 +180,19 @@ const FuturePlans: React.FC<FuturePlansProps> = ({ isDarkMode }) => {
                     </h4>
 
                     <p
-                      className={`leading-relaxed mb-3 ${
-                        isDarkMode ? "text-zinc-300" : "text-zinc-800"
-                      }`}
+                      className="leading-relaxed mb-3"
+                      style={{ color: 'var(--color-muted-foreground)' }}
                     >
                       {vision.description}
                     </p>
 
-                    <div className="inline-flex items-center px-3 py-1 border border-green-600 rounded-full text-green-600 text-sm font-medium">
+                    <div 
+                      className="inline-flex items-center px-3 py-1 border rounded-full text-sm font-medium"
+                      style={{ 
+                        borderColor: 'var(--color-success)',
+                        color: 'var(--color-success)'
+                      }}
+                    >
                       Impact Goal: {vision.impact}
                     </div>
                   </div>

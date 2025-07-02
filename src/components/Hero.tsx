@@ -1,6 +1,6 @@
-// components/Hero.tsx
 import React from "react";
-import { ChevronDown, Github, Linkedin, Twitter } from "lucide-react";
+import { ChevronDown, Github, Linkedin } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
 
 import {
   SiHtml5,
@@ -11,50 +11,38 @@ import {
   SiNextdotjs,
   SiNodedotjs,
   SiTailwindcss,
-  SiPostgresql,
 } from "react-icons/si";
 
-interface HeroProps {
-  isDarkMode: boolean;
-}
-
-// 👇 Subcomponent: ProfileImage
-const ProfileImage = ({ isDarkMode }: { isDarkMode: boolean }) => (
+const ProfileImage = () => (
   <div className="flex justify-center mt-[-10vh] items-center">
     <div
-      className={`
-         w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80  
-        animate-blob overflow-hidden 
-        border-4 rounded-full 
-        ${
-          isDarkMode
-            ? "bg-zinc-900 text-white border-zinc-100"
-            : "bg-white text-black border-zinc-700"
-        }
-      `}
+      className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 animate-blob overflow-hidden border-4 rounded-full"
+      style={{
+        backgroundColor: 'var(--color-card)',
+        borderColor: 'var(--color-border)'
+      }}
     >
       <img
         src="/image/moreno_profile.png"
         alt="Profile"
-        className="w-full h-full object-cover "
+        className="w-full h-full object-cover"
       />
     </div>
   </div>
 );
 
-// 👇 Subcomponent: SocialLinks
-const SocialLinks = ({ isDarkMode }: { isDarkMode: boolean }) => {
-  const iconStyle = isDarkMode
-    ? "bg-zinc-800 text-zinc-300 hover:text-white"
-    : "bg-zinc-200 text-zinc-800 hover:text-black";
-
+const SocialLinks = () => {
   return (
     <div className="flex space-x-4">
       <a
         href="https://github.com/andreikennethmoreno"
         target="_blank"
         rel="noopener noreferrer"
-        className={`p-3 rounded-lg transition-all duration-200 hover:scale-150 ${iconStyle}`}
+        className="p-3 rounded-lg transition-all duration-200 hover:scale-150"
+        style={{
+          backgroundColor: 'var(--color-card)',
+          color: 'var(--color-muted-foreground)'
+        }}
       >
         <Github size={24} />
       </a>
@@ -62,15 +50,18 @@ const SocialLinks = ({ isDarkMode }: { isDarkMode: boolean }) => {
         href="https://www.linkedin.com/in/kenn-onirom-350a72300/"
         target="_blank"
         rel="noopener noreferrer"
-        className={`p-3 rounded-lg transition-all duration-200 hover:scale-150 ${iconStyle}`}
+        className="p-3 rounded-lg transition-all duration-200 hover:scale-150"
+        style={{
+          backgroundColor: 'var(--color-card)',
+          color: 'var(--color-muted-foreground)'
+        }}
       >
         <Linkedin size={24} />
       </a>
       <a
         href="#projects"
-        className={`p-3 font-bold rounded-lg transition-all duration-200 hover:scale-110 text-white ${
-          isDarkMode ? "hover:text-white" : "hover:text-white"
-        } bg-[#2BA6FF]`}
+        className="p-3 font-bold rounded-lg transition-all duration-200 hover:scale-110 text-white"
+        style={{ backgroundColor: 'var(--color-accent)' }}
       >
         View Work
       </a>
@@ -78,38 +69,10 @@ const SocialLinks = ({ isDarkMode }: { isDarkMode: boolean }) => {
   );
 };
 
-// 👇 Subcomponent: ScrollDownIcon
-const ScrollDownIcon = ({
-  isDarkMode,
-  scrollToAbout,
-}: {
-  isDarkMode: boolean;
-  scrollToAbout: () => void;
-}) => (
-  <div className="absolute bottom-8 left-0 right-0 flex justify-center">
-    <button
-      onClick={scrollToAbout}
-      className={`transition-colors duration-300 animate-bounce ${
-        isDarkMode
-          ? "text-zinc-400 hover:text-white"
-          : "text-zinc-800 hover:text-black"
-      }`}
-    >
-      <ChevronDown size={32} />
-    </button>
-  </div>
-);
-
 interface IconConfig {
   component: React.ComponentType<any>;
   darkColor: string;
   lightColor: string;
-}
-
-interface TechStackItem {
-  Icon: IconConfig;
-  title: string;
-  isLarge?: boolean;
 }
 
 interface TechIconProps {
@@ -119,7 +82,6 @@ interface TechIconProps {
   isLarge?: boolean;
 }
 
-// Tech Stack Icons Component
 const TechIcon: React.FC<TechIconProps> = ({ Icon, title, isDarkMode, isLarge = false }) => {
   const IconComponent = Icon.component;
   
@@ -131,17 +93,19 @@ const TechIcon: React.FC<TechIconProps> = ({ Icon, title, isDarkMode, isLarge = 
           isLarge ? "text-5xl" : ""
         } ${isDarkMode ? Icon.darkColor : Icon.lightColor}`}
       />
-      <span className={`absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap ${
-        isDarkMode ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
-      }`}>
+      <span 
+        className={`absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap`}
+        style={{
+          backgroundColor: 'var(--color-card)',
+          color: 'var(--color-foreground)'
+        }}
+      >
         {title}
       </span>
     </div>
   );
 };
 
-
-// Define tech stack data
 const techStack = [
   { 
     Icon: { 
@@ -207,11 +171,9 @@ const techStack = [
     }, 
     title: "Tailwind CSS" 
   },
-
 ];
 
-// 👇 Main Component: Hero
-const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
+const Hero: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
   const scrollToAbout = () => {
     const element = document.getElementById("about");
     if (element) {
@@ -222,50 +184,39 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
   return (
     <section
       id="hero"
-      className="
-      min-h-[130vh] sm:min-h-[125vh] md:min-h-[120vh] lg:min-h-[110vh] xl:min-h-screen 
-      flex items-center justify-center relative px-4 sm:px-6 lg:px-12
-      mt-[-1vh]
-    "
+      className="min-h-[130vh] sm:min-h-[125vh] md:min-h-[120vh] lg:min-h-[110vh] xl:min-h-screen flex items-center justify-center relative px-4 sm:px-6 lg:px-12 mt-[-1vh]"
     >
       <div className="flex flex-col-reverse lg:flex-row items-center justify-center gap-12 max-w-6xl w-full">
-        {/* Left: Text content */}
         <div
-          className={`flex-1 max-w-full mx-auto lg:mx-0 ${
-            isDarkMode ? "text-white" : "text-black"
-          } text-center lg:text-left`}
+          className="flex-1 max-w-full mx-auto lg:mx-0 text-center lg:text-left"
+          style={{ color: 'var(--color-foreground)' }}
         >
           <div className="animate-fade-in-up">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
               Full Stack Developer 👋🏻
             </h1>
             <p
-              className={`text-lg max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed ${
-                isDarkMode ? "text-zinc-400" : "text-zinc-800"
-              }`}
+              className="text-lg max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed"
+              style={{ color: 'var(--color-muted-foreground)' }}
             >
               Hi, I'm Kenneth Moreno. A creative Full-Stack Node.js Developer
               based in Cavite, Philippines. 📍
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 mb-16">
-              <SocialLinks isDarkMode={isDarkMode} />
+              <SocialLinks />
             </div>
           </div>
         </div>
 
-        {/* Right: Profile image */}
-        <ProfileImage isDarkMode={isDarkMode} />
+        <ProfileImage />
       </div>
-
-      {/* <ScrollDownIcon isDarkMode={isDarkMode} scrollToAbout={scrollToAbout} /> */}
 
       <div className="absolute bottom-2 sm:bottom-20 lg:bottom-28 left-0 w-full px-6 sm:px-12">
         <div className="grid grid-cols-full sm:grid-cols-[1fr_2fr] gap-6 items-start text-center sm:text-left">
           <p
-            className={`text-base sm:text-lg font-semibold ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
+            className="text-base sm:text-lg font-semibold"
+            style={{ color: 'var(--color-foreground)' }}
           >
             Tech Stack
           </p>

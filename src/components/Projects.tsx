@@ -2,18 +2,13 @@ import React from "react";
 import {
   ExternalLink,
   Github,
-  Smartphone,
-  Globe,
-  ShoppingCart,
 } from "lucide-react";
 import Image from "next/image";
+import { useTheme } from "@/hooks/useTheme";
 
-
-interface ProjectsProps {
-  isDarkMode: boolean;
-}
-
-const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
+const Projects: React.FC = () => {
+  const { isDarkMode } = useTheme();
+  
   const projects = [
     {
       title: "Mood2Anime ⛩️",
@@ -39,31 +34,28 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
         "A full-stack inventory system built with Next.js and ShadCN UI. Features Clerk authentication, PostgreSQL via Prisma ORM, and image uploads — all deployed on Vercel.",
       technologies: ["Next.js", "Prisma", "PostgreSQL", "Clerk"],
       image: "/image/projects/plant-thumb.png",
-      demoLink: "https://nextjscrudauth.vercel.app/plants", // replace with actual link
-      githubLink: "https://github.com/andreikennethmoreno/nextjscrudauth", // replace if needed
+      demoLink: "https://nextjscrudauth.vercel.app/plants",
+      githubLink: "https://github.com/andreikennethmoreno/nextjscrudauth",
     },
   ];
 
   return (
     <section
       id="projects"
-      className={`py-20 px-4 sm:px-6 lg:px-8 border-t ${
-        isDarkMode ? "border-zinc-800" : "border-zinc-200"
-      }`}
+      className="py-20 px-4 sm:px-6 lg:px-8 border-t"
+      style={{ borderColor: 'var(--color-border)' }}
     >
-      <div className="max-w-7xl mx-auto ">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2
-            className={`text-4xl sm:text-5xl font-bold mb-6 ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
+            className="text-4xl sm:text-5xl font-bold mb-6"
+            style={{ color: 'var(--color-foreground)' }}
           >
             Featured Projects 🧩
           </h2>
           <p
-            className={`mt-6 max-w-2xl mx-auto ${
-              isDarkMode ? "text-zinc-400" : "text-zinc-800"
-            }`}
+            className="mt-6 max-w-2xl mx-auto"
+            style={{ color: 'var(--color-muted-foreground)' }}
           >
             Here are some of my recent projects that showcase my skills in
             design, development, and problem-solving.
@@ -71,7 +63,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
         </div>
 
         <div
-          className="relative max-w-7xl mx-auto mb-20 "
+          className="relative max-w-7xl mx-auto mb-20"
           style={{ minHeight: `${projects.length * 300}px` }}
         >
           {[...projects].reverse().map((project, index) => {
@@ -80,41 +72,34 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                 key={project.title}
                 style={{
                   top: `calc(${10}vh + ${index * 4}vh)`,
-                  zIndex: index + 1, // reverse zIndex to match order
+                  zIndex: index + 1,
                 }}
-                className={`sticky mb-12 rounded-3xl overflow-hidden transition-all duration-500 transform  ${
-                  isDarkMode
-                    ? "bg-zinc-900 border border-zinc-500 "
-                    : "bg-zinc-100 border border-zinc-300"
-                } ${index % 2 === 1 ? "" : ""}`}
+                className="sticky mb-12 rounded-3xl overflow-hidden transition-all duration-500 transform border"
+                data-style={{
+                  backgroundColor: 'var(--color-card)',
+                  borderColor: 'var(--color-border)'
+                }}
               >
-                <div
-                  className={`flex flex-col lg:flex-row ${
-                    index % 2 === 1 ? "" : ""
-                  }`}
-                >
+                <div className="flex flex-col lg:flex-row">
                   <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
                     <h3
-                      className={`text-3xl font-bold mb-4 ${
-                        isDarkMode ? "text-white" : "text-black"
-                      }`}
+                      className="text-3xl font-bold mb-4"
+                      style={{ color: 'var(--color-foreground)' }}
                     >
                       {project.title}
                     </h3>
 
                     <p
-                      className={`mb-6 leading-relaxed ${
-                        isDarkMode ? "text-zinc-300" : "text-zinc-800"
-                      }`}
+                      className="mb-6 leading-relaxed"
+                      style={{ color: 'var(--color-muted-foreground)' }}
                     >
                       {project.description}
                     </p>
 
                     <div className="mb-8">
                       <h4
-                        className={`font-semibold mb-3 ${
-                          isDarkMode ? "text-white" : "text-black"
-                        }`}
+                        className="font-semibold mb-3"
+                        style={{ color: 'var(--color-foreground)' }}
                       >
                         Technologies:
                       </h4>
@@ -122,11 +107,12 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className={`px-3 py-1 rounded-full text-sm border ${
-                              isDarkMode
-                                ? "bg-zinc-800 text-zinc-300 border-zinc-700"
-                                : "bg-white text-zinc-700 border-zinc-200"
-                            }`}
+                            className="px-3 py-1 rounded-full text-sm border"
+                            style={{
+                              backgroundColor: 'var(--color-background)',
+                              color: 'var(--color-muted-foreground)',
+                              borderColor: 'var(--color-border)'
+                            }}
                           >
                             {tech}
                           </span>
@@ -139,7 +125,8 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                         href={project.demoLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center px-6 py-3 bg-[#2BA6FF] text-white rounded-lg font-medium  transition-all duration-200 transform 5"
+                        className="inline-flex items-center px-6 py-3 text-white rounded-lg font-medium transition-all duration-200 transform"
+                        style={{ backgroundColor: 'var(--color-accent)' }}
                       >
                         <ExternalLink size={16} className="mr-2" />
                         Live Demo
@@ -148,11 +135,12 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                         href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`inline-flex items-center px-6 py-3 rounded-lg font-medium transition-all duration-200 transform  ${
-                          isDarkMode
-                            ? "bg-zinc-800 text-white border-zinc-700 "
-                            : "bg-white text-black border-zinc-200 "
-                        }`}
+                        className="inline-flex items-center px-6 py-3 rounded-lg font-medium transition-all duration-200 transform border"
+                        style={{
+                          backgroundColor: 'var(--color-background)',
+                          color: 'var(--color-foreground)',
+                          borderColor: 'var(--color-border)'
+                        }}
                       >
                         <Github size={16} className="mr-2" />
                         GitHub
@@ -174,13 +162,13 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                           alt={project.title}
                           fill
                           sizes="(max-width: 1024px) 100vw, 50vw"
-                          className="rounded-tl-2xl object-cover shadow-2xl  cursor-pointer"
+                          className="rounded-tl-2xl object-cover shadow-2xl cursor-pointer"
                           style={{
                             objectPosition: "left center",
                           }}
                           quality={95}
                           onClick={() => window.open(project.image, "_blank")}
-                          unoptimized={false} // Let Next.js optimize
+                          unoptimized={false}
                         />
                       </div>
                     </div>
