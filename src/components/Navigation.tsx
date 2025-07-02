@@ -32,19 +32,18 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 border-b transition-colors duration-300 ${
-        isDarkMode
-          ? "bg-black/80 backdrop-blur-lg border-zinc-800"
-          : "bg-white/80 backdrop-blur-lg border-zinc-200"
-      }`}
+      className="fixed top-0 w-full z-50 border-b transition-all duration-300 backdrop-blur-lg"
+      style={{
+        backgroundColor: 'var(--color-background)',
+        borderColor: 'var(--color-border)'
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <h1
-              className={`text-xl font-bold ${
-                isDarkMode ? "text-white" : "text-black"
-              }`}
+              className="text-xl font-bold"
+              style={{ color: 'var(--color-foreground)' }}
             >
               kenn.dev
             </h1>
@@ -56,13 +55,27 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`px-3 py-2 rounded-lg text-sm font-bold transition-all duration-200 ${
-                  activeSection === item.id
-                    ? "text-[#2BA6FF]"
-                    : isDarkMode
-                    ? "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-                    : "text-zinc-800 hover:bg-zinc-100 hover:text-black"
-                }`}
+                className="px-3 py-2 rounded-lg text-sm font-bold transition-all duration-200 hover:scale-105"
+                style={{
+                  color: activeSection === item.id 
+                    ? 'var(--color-accent)' 
+                    : 'var(--color-muted-foreground)',
+                  backgroundColor: activeSection === item.id 
+                    ? 'var(--color-card)' 
+                    : 'transparent'
+                }}
+                onMouseEnter={(e) => {
+                  if (activeSection !== item.id) {
+                    e.currentTarget.style.backgroundColor = 'var(--color-card)';
+                    e.currentTarget.style.color = 'var(--color-foreground)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeSection !== item.id) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'var(--color-muted-foreground)';
+                  }
+                }}
               >
                 {item.label}
               </button>
@@ -78,11 +91,19 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
             {/* Legacy Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-all duration-200 ${
-                isDarkMode
-                  ? "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-                  : "text-zinc-800 hover:bg-zinc-100 hover:text-black"
-              }`}
+              className="p-2 rounded-lg transition-all duration-200 hover:scale-110"
+              style={{
+                color: 'var(--color-muted-foreground)',
+                backgroundColor: 'transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-card)';
+                e.currentTarget.style.color = 'var(--color-foreground)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--color-muted-foreground)';
+              }}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
@@ -97,21 +118,37 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
             />
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-all duration-200 ${
-                isDarkMode
-                  ? "text-zinc-300 hover:bg-zinc-800"
-                  : "text-zinc-800 hover:bg-zinc-100"
-              }`}
+              className="p-2 rounded-lg transition-all duration-200"
+              style={{
+                color: 'var(--color-muted-foreground)',
+                backgroundColor: 'transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-card)';
+                e.currentTarget.style.color = 'var(--color-foreground)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--color-muted-foreground)';
+              }}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 rounded-lg transition-all duration-200 ${
-                isDarkMode
-                  ? "text-zinc-300 hover:bg-zinc-800"
-                  : "text-zinc-800 hover:bg-zinc-100"
-              }`}
+              className="p-2 rounded-lg transition-all duration-200"
+              style={{
+                color: 'var(--color-muted-foreground)',
+                backgroundColor: 'transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-card)';
+                e.currentTarget.style.color = 'var(--color-foreground)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--color-muted-foreground)';
+              }}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -122,22 +159,38 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <div
-          className={`lg:hidden border-t transition-colors duration-300 ${
-            isDarkMode ? "border-zinc-800 bg-black" : "border-zinc-200 bg-white"
-          }`}
+          className="lg:hidden border-t transition-all duration-300"
+          style={{
+            borderColor: 'var(--color-border)',
+            backgroundColor: 'var(--color-background)'
+          }}
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`w-full text-left px-3 py-2 rounded-lg text-base font-medium transition-all duration-200 ${
-                  activeSection === item.id
-                    ? "text-[#2BA6FF]"
-                    : isDarkMode
-                    ? "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-                    : "text-zinc-800 hover:bg-zinc-100 hover:text-black"
-                }`}
+                className="w-full text-left px-3 py-2 rounded-lg text-base font-medium transition-all duration-200"
+                style={{
+                  color: activeSection === item.id 
+                    ? 'var(--color-accent)' 
+                    : 'var(--color-muted-foreground)',
+                  backgroundColor: activeSection === item.id 
+                    ? 'var(--color-card)' 
+                    : 'transparent'
+                }}
+                onMouseEnter={(e) => {
+                  if (activeSection !== item.id) {
+                    e.currentTarget.style.backgroundColor = 'var(--color-card)';
+                    e.currentTarget.style.color = 'var(--color-foreground)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeSection !== item.id) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'var(--color-muted-foreground)';
+                  }
+                }}
               >
                 {item.label}
               </button>

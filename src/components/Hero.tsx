@@ -71,18 +71,16 @@ const SocialLinks = () => {
 
 interface IconConfig {
   component: React.ComponentType<any>;
-  darkColor: string;
-  lightColor: string;
+  color: string;
 }
 
 interface TechIconProps {
   Icon: IconConfig;
   title: string;
-  isDarkMode: boolean;
   isLarge?: boolean;
 }
 
-const TechIcon: React.FC<TechIconProps> = ({ Icon, title, isDarkMode, isLarge = false }) => {
+const TechIcon: React.FC<TechIconProps> = ({ Icon, title, isLarge = false }) => {
   const IconComponent = Icon.component;
   
   return (
@@ -91,7 +89,8 @@ const TechIcon: React.FC<TechIconProps> = ({ Icon, title, isDarkMode, isLarge = 
         title={title}
         className={`transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 cursor-pointer ${
           isLarge ? "text-5xl" : ""
-        } ${isDarkMode ? Icon.darkColor : Icon.lightColor}`}
+        }`}
+        style={{ color: Icon.color }}
       />
       <span 
         className={`absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap`}
@@ -110,64 +109,56 @@ const techStack = [
   { 
     Icon: { 
       component: SiHtml5, 
-      darkColor: "text-[#FF6B47]", 
-      lightColor: "text-[#B8341A]" 
+      color: "#E34F26"
     }, 
     title: "HTML5" 
   },
   { 
     Icon: { 
       component: SiCss3, 
-      darkColor: "text-[#2196F3]", 
-      lightColor: "text-[#0F4C81]" 
+      color: "#1572B6"
     }, 
     title: "CSS3" 
   },
   { 
     Icon: { 
       component: SiJavascript, 
-      darkColor: "text-[#FFE066]", 
-      lightColor: "text-[#B8A000]" 
+      color: "#F7DF1E"
     }, 
     title: "JavaScript" 
   },
   { 
     Icon: { 
       component: SiTypescript, 
-      darkColor: "text-[#4FC3F7]", 
-      lightColor: "text-[#1E4A6B]" 
+      color: "#3178C6"
     }, 
     title: "TypeScript" 
   },
   { 
     Icon: { 
       component: SiReact, 
-      darkColor: "text-[#7DD3FC]", 
-      lightColor: "text-[#0891B2]" 
+      color: "#61DAFB"
     }, 
     title: "React" 
   },
   { 
     Icon: { 
       component: SiNextdotjs, 
-      darkColor: "text-white", 
-      lightColor: "text-black" 
+      color: "var(--color-foreground)"
     }, 
     title: "Next.js" 
   },
   { 
     Icon: { 
       component: SiNodedotjs, 
-      darkColor: "text-[#4ADE80]", 
-      lightColor: "text-[#166534]" 
+      color: "#339933"
     }, 
     title: "Node.js" 
   },
   { 
     Icon: { 
       component: SiTailwindcss, 
-      darkColor: "text-[#06B6D4]", 
-      lightColor: "text-[#0E7490]" 
+      color: "#06B6D4"
     }, 
     title: "Tailwind CSS" 
   },
@@ -192,7 +183,10 @@ const Hero: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
           style={{ color: 'var(--color-foreground)' }}
         >
           <div className="animate-fade-in-up">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+            <h1 
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6"
+              style={{ color: 'var(--color-foreground)' }}
+            >
               Full Stack Developer 👋🏻
             </h1>
             <p
@@ -226,7 +220,6 @@ const Hero: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
                 key={title}
                 Icon={Icon}
                 title={title}
-                isDarkMode={isDarkMode}
               />
             ))}
           </div>

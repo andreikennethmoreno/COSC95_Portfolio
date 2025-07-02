@@ -27,11 +27,19 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-          isDarkMode
-            ? 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
-            : 'text-zinc-800 hover:bg-zinc-100 hover:text-black'
-        }`}
+        className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
+        style={{
+          color: 'var(--color-muted-foreground)',
+          backgroundColor: 'transparent'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = 'var(--color-card)';
+          e.currentTarget.style.color = 'var(--color-foreground)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'transparent';
+          e.currentTarget.style.color = 'var(--color-muted-foreground)';
+        }}
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -53,28 +61,45 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
           
           {/* Dropdown */}
           <div 
-            className={`absolute right-0 top-full mt-2 w-48 rounded-xl border shadow-lg z-50 ${
-              isDarkMode 
-                ? 'bg-zinc-900 border-zinc-700' 
-                : 'bg-white border-zinc-200'
-            }`}
+            className="absolute right-0 top-full mt-2 w-48 rounded-xl border shadow-lg z-50"
+            style={{
+              backgroundColor: 'var(--color-background)',
+              borderColor: 'var(--color-border)'
+            }}
           >
             <div className="p-2">
               {Object.entries(themes).map(([key, theme]) => (
                 <button
                   key={key}
                   onClick={() => handleThemeSelect(key as ThemeName)}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-200 ${
-                    currentTheme === key
-                      ? 'bg-[#2BA6FF] text-white'
-                      : isDarkMode
-                      ? 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
-                      : 'text-zinc-800 hover:bg-zinc-100 hover:text-black'
-                  }`}
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:scale-105"
+                  style={{
+                    color: currentTheme === key 
+                      ? 'white' 
+                      : 'var(--color-muted-foreground)',
+                    backgroundColor: currentTheme === key 
+                      ? 'var(--color-accent)' 
+                      : 'transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (currentTheme !== key) {
+                      e.currentTarget.style.backgroundColor = 'var(--color-card)';
+                      e.currentTarget.style.color = 'var(--color-foreground)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (currentTheme !== key) {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = 'var(--color-muted-foreground)';
+                    }
+                  }}
                 >
                   <div 
-                    className="w-4 h-4 rounded-full border-2 border-white/20"
-                    style={{ backgroundColor: theme.colors.accent }}
+                    className="w-4 h-4 rounded-full border-2"
+                    style={{ 
+                      backgroundColor: theme.colors.accent,
+                      borderColor: currentTheme === key ? 'white' : 'var(--color-border)'
+                    }}
                   />
                   <span>{theme.displayName}</span>
                   {currentTheme === key && (
